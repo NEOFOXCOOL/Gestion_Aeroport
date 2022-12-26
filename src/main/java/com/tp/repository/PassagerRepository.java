@@ -1,6 +1,6 @@
 package com.tp.repository;
 
-import com.tp.entity.Passager;
+import com.tp.entity.reservation.Passager;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

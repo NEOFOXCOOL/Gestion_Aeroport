@@ -1,6 +1,6 @@
 package com.tp.services;
 
-import com.tp.entity.Reservation;
+import com.tp.entity.reservation.Reservation;
 import com.tp.entity.Reserver;
 import com.tp.repository.ClientRepository;
 import com.tp.repository.PassagerRepository;

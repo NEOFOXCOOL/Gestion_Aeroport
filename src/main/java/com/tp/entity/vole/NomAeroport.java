@@ -1,4 +1,4 @@
-package com.tp.entity;
+package com.tp.entity.vole;
 
 public enum NomAeroport {
 

@@ -3,10 +3,9 @@
 *
 * Drop us a line or two at feedback@archetypesoftware.com: we would love to hear from you!
 */
-package com.tp.entity;
+package com.tp.entity.reservation;
 
 import lombok.*;
-
 import jakarta.persistence.*;
 import java.util.Collection;
 
@@ -14,6 +13,7 @@ import java.util.Collection;
 @Getter
 @Setter
 @NoArgsConstructor
+@RequiredArgsConstructor
 @AllArgsConstructor
 @Entity(name = "Client")
 @Table(
@@ -49,12 +49,14 @@ public class Client {
             name = "client_first_name",
             nullable = false
     )
+    @NonNull
     private String first_name;
 
     @Column(
             name = "client_last_name",
             nullable = false
     )
+    @NonNull
     private String last_name;
 
     @Column(
@@ -62,6 +64,7 @@ public class Client {
             nullable = false,
             length = 25
     )
+    @NonNull
     private String address;
 
     @Column(
@@ -69,25 +72,22 @@ public class Client {
             nullable = false,
             length = 13
     )
+    @NonNull
     private String telephone;
 
     @Column(
             name = "client_email",
             nullable = false
     )
+    @NonNull
     private String email;
 
     //ERD party
     @OneToMany(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "client",
             fetch = FetchType.LAZY
     )
     private Collection<Reservation> reservation ;
-
-
-    public Client(){
-
-    }
 
 }

@@ -1,4 +1,4 @@
-package com.tp.entity;
+package com.tp.entity.vole;
 
 import lombok.*;
 
@@ -18,7 +18,7 @@ public class Ville {
 
     //ER party
     @OneToMany(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "ville",
             fetch = FetchType.LAZY)
      private Collection<Aeroport> aeroports;

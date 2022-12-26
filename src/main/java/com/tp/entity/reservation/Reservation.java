@@ -1,15 +1,15 @@
-package com.tp.entity;
+package com.tp.entity.reservation;
 
+import com.tp.entity.vole.Vole;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table
 @ToString
@@ -38,50 +38,32 @@ public class Reservation {
                     nullable = false,
                     columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
             )
+            @NonNull
             private LocalDateTime date_reservation = LocalDateTime.now();
 
             //ER party
     @ManyToOne
     @JoinColumn(
             name = "client_id",
-            updatable = false,
-            insertable = false,
-            foreignKey = @ForeignKey(
-                    name = "id",
-                    foreignKeyDefinition = "client_id_fk")
+            referencedColumnName = "client_id"
+
     )
+    @NonNull
             private Client client;
 
     @ManyToOne
     @JoinColumn(
             name = "passager_id",
-            updatable = false,
-            insertable = false,
-            foreignKey = @ForeignKey(
-                    name = "id",
-                    foreignKeyDefinition = "passager_id_fk")
+            referencedColumnName = "passager_id"
     )
+    @NonNull
             private Passager passager;
     @ManyToOne
     @JoinColumn(
             name = "vole_id",
-            updatable = false,
-            insertable = false,
-            foreignKey = @ForeignKey(
-                    name = "id",
-                    foreignKeyDefinition = "vole_id_fk")
+            referencedColumnName = "vole_id"
     )
+    @NonNull
             private Vole vole;
 
-
-    public Reservation(
-            Client client,
-            Passager passager,
-            Vole vole
-    )
-    {
-client = this.client;
-passager=this.passager;
-vole = this.vole;
-    }
     }

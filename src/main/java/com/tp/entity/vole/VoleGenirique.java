@@ -1,4 +1,4 @@
-package com.tp.entity;
+package com.tp.entity.vole;
 
 import lombok.*;
 
@@ -68,7 +68,7 @@ public class VoleGenirique {
 
     //ER Party
     @OneToMany(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "voleGenirique",
             fetch = FetchType.LAZY
     )
@@ -96,7 +96,7 @@ public class VoleGenirique {
 
 
     @OneToMany(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "vole_escale",
             fetch = FetchType.EAGER
     )

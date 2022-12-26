@@ -3,7 +3,7 @@
 *
 * Drop us a line or two at feedback@archetypesoftware.com: we would love to hear from you!
 */
-package com.tp.entity;
+package com.tp.entity.vole;
 
 import lombok.*;
 
@@ -45,14 +45,14 @@ public class CompagniesAerienne {
 
     //ER Party
     @OneToMany(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "compagniesAerienne",
             fetch = FetchType.LAZY)
     private Collection<Vole> vole;
 
     //à triter
     @OneToOne(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "compagniesAerienne",
             fetch = FetchType.EAGER)
     private VoleGenirique voleCompanie = new VoleGenirique();

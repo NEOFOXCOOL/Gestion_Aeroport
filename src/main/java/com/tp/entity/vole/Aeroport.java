@@ -1,4 +1,4 @@
-package com.tp.entity;
+package com.tp.entity.vole;
 
 import lombok.*;
 
@@ -52,7 +52,7 @@ public class Aeroport {
 
     //ER Party
     @OneToMany(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "depart",
             fetch = FetchType.LAZY
     )
@@ -60,13 +60,13 @@ public class Aeroport {
 
 
     @OneToMany(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "arriver",
             fetch = FetchType.LAZY)
     private Collection<VoleGenirique> arriver_vole;
 
     @OneToMany(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "aeroport_escale",
             fetch = FetchType.EAGER
     )

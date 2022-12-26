@@ -3,8 +3,9 @@
 *
 * Drop us a line or two at feedback@archetypesoftware.com: we would love to hear from you!
 */
-package com.tp.entity;
+package com.tp.entity.reservation;
 
+import com.tp.entity.reservation.Reservation;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,42 +14,42 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Entity(name = "Passager")
-@Table(name = "passager")
-@ToString
+@RequiredArgsConstructor
+@Entity
+@Table
 public class Passager {
 
     @Id
     @SequenceGenerator(
-            name = "passager_squence",
-            sequenceName = "passager_squence",
+            name = "passagersquence",
+            sequenceName = "passagersquence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "passager_squence"
+            generator = "passagersquence"
     )
+    @NonNull
     @Column(
-            name = "passager_id",
+            name = "id_passager",
             nullable = false,
-            insertable = false,
-            updatable = false
+            updatable = false,
+            insertable = false
     )
     private Long id;
 
     @Column(
             name = "passager_first_name",
-            nullable = false,
-            length = 25
+            nullable = false
     )
+    @NonNull
     private String first_name;
 
     @Column(
             name = "passager_last_name",
-            nullable = false,
-            length = 25
+            nullable = false
     )
+    @NonNull
     private String last_name;
     //ERD party
     @OneToMany(
@@ -56,4 +57,5 @@ public class Passager {
             mappedBy = "passager",
             fetch = FetchType.LAZY)
     private List<Reservation> reservation ;
+
 }

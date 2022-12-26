@@ -1,32 +1,30 @@
 package com.tp.controller;
 
 import com.tp.entity.Reservation;
-import com.tp.services.ReservationServices;
-import com.tp.services.ResourceNotfound;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.tp.entity.Reserver;
+import com.tp.services.ReservationService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RestController
 //@RequestMapping(path = "reservation")
 public class ReservationController {
 
-    @Autowired
-    private  ReservationServices reservationServices;
+private final ReservationService reservationService;
 
-    @GetMapping(path = "/list")
-    public List<Reservation> listreservation(){
-        return reservationServices.listReservation();
+    public ReservationController(ReservationService reservationService) {
+        this.reservationService = reservationService;
     }
 
-    @PostMapping(path = "reserver")
-    public void reserver(@RequestBody Reservation reservation){
-reservationServices.reserver(reservation);
+
+    @GetMapping(path = "/list_reservation")
+    public List<Reservation> listReservation(){
+        return  reservationService.reservation();
     }
 
-    @PutMapping(path = "edit_reservation")
-    public void updatereservation(@PathVariable("num_reservation") Long id,@RequestBody Reservation reservation) throws ResourceNotfound {
-        reservationServices.editReservation(id,reservation);
+    @PostMapping(path = "/reserver")
+    public void resever(@RequestBody  Reserver reserver){
+        reservationService.addReservation(reserver);
     }
-
 }

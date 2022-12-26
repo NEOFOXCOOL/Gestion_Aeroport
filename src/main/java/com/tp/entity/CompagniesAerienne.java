@@ -5,10 +5,7 @@
 */
 package com.tp.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import jakarta.persistence.*;
 import java.util.Collection;
@@ -16,22 +13,48 @@ import java.util.Collection;
 @Getter
 @Setter
 @NoArgsConstructor @AllArgsConstructor
-@Table
-@Entity
-
+@Table(name = "compagniesaerienne")
+@Entity(name = "Compagniesaerienne")
+@ToString
 public class CompagniesAerienne {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_compagnie;
-    private String nomCompagnie;
+    @SequenceGenerator(
+            name = "compagnie_sequence",
+            sequenceName = "compagnie_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "compagnie_sequence"
+    )
+    @Column(
+            name = "compagnie_id",
+            nullable = false,
+            updatable = false,
+            insertable = false
+    )
+    private Long id;
+
+    @Column(
+            name = "compagnie_name",
+            nullable = false,
+            length = 25
+    )
+    private String name;
 
     //ER Party
-    @OneToMany(mappedBy = "compagniesAerienne",fetch = FetchType.LAZY)
+    @OneToMany(
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            mappedBy = "compagniesAerienne",
+            fetch = FetchType.LAZY)
     private Collection<Vole> vole;
 
     //à triter
-    @OneToOne(mappedBy = "compagniesAerienne",fetch = FetchType.EAGER)
+    @OneToOne(
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            mappedBy = "compagniesAerienne",
+            fetch = FetchType.EAGER)
     private VoleGenirique voleCompanie = new VoleGenirique();
 
 }

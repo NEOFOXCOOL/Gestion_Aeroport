@@ -1,9 +1,6 @@
 package com.tp.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import jakarta.persistence.*;
 import java.sql.Time;
@@ -14,32 +11,106 @@ import java.util.Collection;
 
 @Getter
 @Setter
-@NoArgsConstructor @AllArgsConstructor
-@Entity
-@Table
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity(name = "VoleGenirique")
+@Table(name = "volegenirique")
+@ToString
 public class VoleGenirique {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long num_de_vole;
+    @SequenceGenerator(
+            name = "colegenirique_sequence",
+            sequenceName = "colegenirique_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "colegenirique_sequence"
+    )
+    @Column(
+            name = "vole_genirique_id",
+            nullable = false,
+            updatable = false,
+            insertable = false
+    )
+    private Long id;
+
+    @Column(
+            name = "day_of_vol",
+            nullable = false
+    )
     private DayOfWeek jour;
-    private Time hourDépart;
-    private Time hourArrivée;
-    private Time durée;
-    private Time périodeValidit;
+
+    @Column(
+           name = "vole_depart",
+            nullable = false
+    )
+    private Time hour_depart;
+
+    @Column(
+            name = "vole_arrive",
+            nullable = false
+    )
+    private Time hour_arrive;
+
+    @Column(
+            name = "vole_intervale",
+            nullable = false
+    )
+    private Time intervale;
+
+    @Column(
+            name = "vole_validation",
+            nullable = false
+    )
+    private Time validation_time;
 
     //ER Party
-    @OneToMany(mappedBy = "voleGenirique",fetch = FetchType.LAZY)
+    @OneToMany(
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            mappedBy = "voleGenirique",
+            fetch = FetchType.LAZY
+    )
     private Collection<Vole> vole;
     @ManyToOne
+    @JoinColumn(
+            name = "aeroport_depart",
+            referencedColumnName = "aeroport_id",
+            foreignKey = @ForeignKey(
+                    name = "aeroport_id",
+                    foreignKeyDefinition = "aeroport_depart_fk"
+            )
+    )
     private Aeroport depart;
     @ManyToOne
+    @JoinColumn(
+            name = "aeroport_arrive",
+            referencedColumnName = "aeroport_id",
+            foreignKey = @ForeignKey(
+                    name = "aeroport_id",
+                    foreignKeyDefinition = "aeroport_arrive_fk"
+            )
+    )
     private Aeroport arriver;
-    @OneToMany(mappedBy = "vole_escale",fetch = FetchType.EAGER)
-    private Collection<Info_Escale> info_escales_vole = new ArrayList<>();
+
+
+    @OneToMany(
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            mappedBy = "vole_escale",
+            fetch = FetchType.EAGER
+    )
+    private Collection<InfoEscale> info_escales_vole = new ArrayList<>();
 
     // à triter
     @OneToOne
+    @JoinColumn(
+            name = "vole_genirique_id",
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "id",
+                    foreignKeyDefinition = "vole_genirique_id_fk"
+            )
+    )
     private CompagniesAerienne compagniesAerienne;
 }

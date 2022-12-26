@@ -1,9 +1,6 @@
 package com.tp.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import jakarta.persistence.*;
 import java.util.Collection;
@@ -13,13 +10,16 @@ import java.util.Collection;
 @NoArgsConstructor @AllArgsConstructor
 @Table
 @Entity
-
+@ToString
 public class Ville {
 
     @Id
-    private NomVille nom_ville;
+    private NomVille name;
 
     //ER party
-    @OneToMany(mappedBy = "ville",fetch = FetchType.LAZY)
+    @OneToMany(
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            mappedBy = "ville",
+            fetch = FetchType.LAZY)
      private Collection<Aeroport> aeroports;
 }

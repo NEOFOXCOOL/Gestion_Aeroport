@@ -6,44 +6,54 @@
 package com.tp.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table
+@Entity(name = "Passager")
+@Table(name = "passager")
+@ToString
 public class Passager {
 
     @Id
     @SequenceGenerator(
-            name = "passagersquence",
-            sequenceName = "passagersquence",
+            name = "passager_squence",
+            sequenceName = "passager_squence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "passagersquence"
+            generator = "passager_squence"
     )
-    private Long id_passager;
+    @Column(
+            name = "passager_id",
+            nullable = false,
+            insertable = false,
+            updatable = false
+    )
+    private Long id;
 
     @Column(
             name = "passager_first_name",
-            nullable = false
+            nullable = false,
+            length = 25
     )
     private String first_name;
 
     @Column(
             name = "passager_last_name",
-            nullable = false
+            nullable = false,
+            length = 25
     )
     private String last_name;
     //ERD party
-    @OneToMany(mappedBy = "passager",fetch = FetchType.LAZY)
+    @OneToMany(
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            mappedBy = "passager",
+            fetch = FetchType.LAZY)
     private List<Reservation> reservation ;
 }

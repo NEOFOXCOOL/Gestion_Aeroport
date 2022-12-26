@@ -15,31 +15,79 @@ import java.util.Collection;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table
+@Entity(name = "Client")
+@Table(
+        name = "client",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "client_email_unique",
+                        columnNames = "client_email"
+                )
+        }
+
+)
 public class Client {
     @Id
+    @SequenceGenerator(
+            name = "sequence_client",
+            sequenceName = "sequence_client",
+            allocationSize = 1
+    )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "sequence_client"
     )
-    private long id_client;
-    private String nom;
-    private String prenom;
-    private String adresse;
+    @Column(
+            name = "client_id",
+            nullable = false,
+            updatable = false,
+            insertable = false
+    )
+    private Long id;
+
+    @Column(
+            name = "client_first_name",
+            nullable = false
+    )
+    private String first_name;
+
+    @Column(
+            name = "client_last_name",
+            nullable = false
+    )
+    private String last_name;
+
+    @Column(
+            name = "client_adresse",
+            nullable = false,
+            length = 25
+    )
+    private String address;
+
+    @Column(
+            name = "client_telephone",
+            nullable = false,
+            length = 13
+    )
     private String telephone;
+
+    @Column(
+            name = "client_email",
+            nullable = false
+    )
     private String email;
+
     //ERD party
     @OneToMany(
-//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "client",
             fetch = FetchType.LAZY
     )
-//    @JoinColumn(
-//            name = "client_id",
-//            foreignKey =
-//            @ForeignKey("client_id_fk")
-//
-//    )
     private Collection<Reservation> reservation ;
+
+
+    public Client(){
+
+    }
+
 }

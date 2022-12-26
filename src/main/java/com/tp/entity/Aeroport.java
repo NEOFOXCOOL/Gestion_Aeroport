@@ -1,36 +1,84 @@
 package com.tp.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import jakarta.persistence.*;
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.*;
 
 
 @Getter
 @Setter
-@NoArgsConstructor @AllArgsConstructor
-@Entity
-@Table
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity(name = "Aeroport")
+@Table(name = "aeroport")
+@ToString
 public class Aeroport {
 
     @Id
-    private NomAeroport nom_aéroport;
-    private Date date_départ;
-    private Date date_arriver;
-    private Time heur_départ;
-    private Time heur_arriver;
+    @Column(
+            name = "aeroport_id",
+            nullable = false,
+            columnDefinition = "TEXT"
+
+    )
+    private NomAeroport id;
+
+    @Column(
+            name = "aeroport_date_depart",
+            nullable = false
+    )
+    private LocalDateTime date_depart;
+
+    @Column(
+            name = "aeroport_date_arrive",
+            nullable = false
+    )
+    private LocalDateTime date_arrive;
+
+    @Column(
+            name = "aeroport_heur_dapart",
+            nullable = false
+    )
+    private Time heur_depart;
+
+    @Column(
+            name = "aeroport_heur_arrive",
+            nullable = false
+    )
+    private Time heur_arrive;
 
     //ER Party
-    @OneToMany(mappedBy = "depart",fetch = FetchType.LAZY)
+    @OneToMany(
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            mappedBy = "depart",
+            fetch = FetchType.LAZY
+    )
     private Collection<VoleGenirique> depart_vole;
-    @OneToMany(mappedBy = "arriver",fetch = FetchType.LAZY)
+
+
+    @OneToMany(
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            mappedBy = "arriver",
+            fetch = FetchType.LAZY)
     private Collection<VoleGenirique> arriver_vole;
-    @OneToMany(mappedBy = "aeroport_escale",fetch = FetchType.EAGER)
-    private Collection<Info_Escale> info_escales_aeroport = new ArrayList<>();
+
+    @OneToMany(
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            mappedBy = "aeroport_escale",
+            fetch = FetchType.EAGER
+    )
+    private Collection<InfoEscale> info_escales_aeroport = new ArrayList<>();
     @ManyToOne
+    @JoinColumn(
+            name = "ville_id",
+            referencedColumnName = "name",
+            foreignKey = @ForeignKey(
+                    name = "name",
+                    foreignKeyDefinition = "ville_id_fk"
+            )
+    )
     private Ville ville;
 }

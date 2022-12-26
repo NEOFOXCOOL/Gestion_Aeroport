@@ -5,35 +5,86 @@
 */
 package com.tp.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import jakarta.persistence.*;
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Getter
 @Setter
-@NoArgsConstructor @AllArgsConstructor
-@Table
-@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "vole")
+@Entity(name = "Vole")
+@ToString
 public class Vole {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long num_vole;
-    private Date dateDépart;
-    private Date dateArriver;
-    private Time duré;
+    @SequenceGenerator(
+            name = "vole_sequence",
+            sequenceName = "vole_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "vole_sequence"
+    )
+    @Column(
+            name = "vole_id",
+            nullable = false,
+            updatable = false,
+            insertable = false
+    )
+    private Long id;
+
+    @Column(
+            name = "vole_date_depart",
+            nullable = false,
+            columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
+    )
+    private LocalDateTime date_departure;
+
+    @Column(
+            name = "vole_date_arrive",
+            nullable = false,
+            columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
+    )
+    private LocalDateTime  date_arrive;
+
+    @Column(
+            name = "vole_interval",
+            nullable = false
+    )
+    private Time interval;
 
     //ER Party
-    @OneToMany(mappedBy = "vole",fetch = FetchType.LAZY)
+    @OneToMany(
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            mappedBy = "vole",
+            fetch = FetchType.LAZY
+    )
     private Collection<Reservation> reservation;
     @ManyToOne
+    @JoinColumn(
+            name = "vole_genirique_id",
+            columnDefinition = "id",
+            foreignKey = @ForeignKey(
+                    name = "id",
+                    foreignKeyDefinition = "vole_genirique_id_fk"
+            )
+    )
     private VoleGenirique voleGenirique;
     @ManyToOne
+    @JoinColumn(
+            name = "compagnie_id",
+            columnDefinition = "Compagnies Aerienne",
+            foreignKey = @ForeignKey(
+                    name = "id",
+                    foreignKeyDefinition = "compagnie_id_fk"
+            )
+    )
     private CompagniesAerienne compagniesAerienne;
 
 }

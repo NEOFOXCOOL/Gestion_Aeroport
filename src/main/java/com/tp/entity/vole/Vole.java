@@ -25,15 +25,15 @@ import java.util.*;
 public class Vole {
 
     @Id
-//    @SequenceGenerator(
-//            name = "vole_sequence",
-//            sequenceName = "vole_sequence",
-//            allocationSize = 1
-//    )
-//    @GeneratedValue(
-//            strategy = GenerationType.SEQUENCE,
-//            generator = "vole_sequence"
-//    )
+    @SequenceGenerator(
+            name = "vole_sequence",
+            sequenceName = "vole_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "vole_sequence"
+    )
     @Column(
             name = "vole_id",
             nullable = false
@@ -65,35 +65,16 @@ public class Vole {
 
     //ER Party
     @OneToMany(
-//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "vole",
-            fetch = FetchType.LAZY
+            fetch = FetchType.LAZY,
+            orphanRemoval = true,
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
     )
-    private Collection<Reservation> list_reservation;
+    private Collection<Reservation> reservation;
     @ManyToOne
-//    @JoinColumn(
-//            name = "vole_genirique_id",
-//            columnDefinition = "id",
-//            foreignKey = @ForeignKey(
-//                    name = "id",
-//                    foreignKeyDefinition = "vole_genirique_id_fk"
-//            )
-//    )
     private VoleGenirique voleGenirique;
     @ManyToOne
-//    @JoinColumn(
-//            name = "compagnie_id",
-//            columnDefinition = "Compagnies Aerienne",
-//            foreignKey = @ForeignKey(
-//                    name = "id",
-//                    foreignKeyDefinition = "compagnie_id_fk"
-//            )
-//    )
     private CompagniesAerienne compagniesAerienne;
 
-    public void toReservation(Reservation reservation){
-        reservation.setVole(this);
-        list_reservation.add(reservation);
-    }
 
 }

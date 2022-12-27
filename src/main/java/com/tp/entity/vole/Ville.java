@@ -18,8 +18,10 @@ public class Ville {
 
     //ER party
     @OneToMany(
-//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "ville",
-            fetch = FetchType.LAZY)
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
      private Collection<Aeroport> aeroports;
 }

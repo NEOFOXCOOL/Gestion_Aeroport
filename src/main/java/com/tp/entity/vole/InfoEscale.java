@@ -20,15 +20,15 @@ import java.time.LocalDateTime;
 public class InfoEscale {
 
     @Id
-//    @SequenceGenerator(
-//            name = "info_escale_sequence",
-//            sequenceName = "info_escale_sequence",
-//            allocationSize = 1
-//    )
-//    @GeneratedValue(
-//            strategy = GenerationType.SEQUENCE,
-//            generator = "info_escale_sequence"
-//    )
+    @SequenceGenerator(
+            name = "info_escale_sequence",
+            sequenceName = "info_escale_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "info_escale_sequence"
+    )
     @Column(
             name = "escale_id",
             nullable = false
@@ -56,24 +56,10 @@ public class InfoEscale {
 
     //ER party
     @ManyToOne
-//    @JoinColumn(
-//            name = "aeroport_id",
-//            referencedColumnName = "aeroport_id",
-//            foreignKey = @ForeignKey(
-//                    name = "id",
-//                    foreignKeyDefinition = "aeroport_id_fk"
-//            )
-//    )
+
 private Aeroport aeroport_escale;
+
     @ManyToOne
-//    @JoinColumn(
-//            name = "vole_genirique_id",
-//            referencedColumnName = "vole_genirique_id",
-//            foreignKey = @ForeignKey(
-//                    name = "id",
-//                    foreignKeyDefinition = "vole-genirique_id_fk"
-//            )
-//    )
 private VoleGenirique vole_escale;
 
 }

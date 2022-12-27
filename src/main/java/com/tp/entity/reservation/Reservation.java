@@ -16,15 +16,15 @@ import java.time.LocalDateTime;
 public class Reservation {
 
             @Id
-//            @SequenceGenerator(
-//                    name = "reservation_sequence",
-//                    sequenceName = "reservation_sequence",
-//                    allocationSize = 1
-//            )
-//            @GeneratedValue(
-//                    strategy = GenerationType.SEQUENCE,
-//                    generator = "reservation_sequence"
-//            )
+            @SequenceGenerator(
+                    name = "reservation_sequence",
+                    sequenceName = "reservation_sequence",
+                    allocationSize = 1
+            )
+            @GeneratedValue(
+                    strategy = GenerationType.SEQUENCE,
+                    generator = "reservation_sequence"
+            )
             @Column(
                     name = "reservation_id",
                     nullable = false
@@ -41,31 +41,19 @@ public class Reservation {
 
             //ER party
     @ManyToOne(
-            fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST,CascadeType.REFRESH}
+            fetch = FetchType.LAZY
     )
-//    @JoinColumn(
-//            name = "client_id",
-//            referencedColumnName = "client_id"
-//
-//    )
     @NonNull
             private Client client;
 
     @ManyToOne(
             fetch = FetchType.LAZY
     )
-//    @JoinColumn(
-//            name = "id_passager",
-//            referencedColumnName = "id_passager"
-//    )
     @NonNull
             private Passager passager;
-    @ManyToOne
-//    @JoinColumn(
-//            name = "vole_id",
-//            referencedColumnName = "vole_id"
-//    )
+    @ManyToOne(
+            fetch =  FetchType.LAZY
+    )
     @NonNull
             private Vole vole;
     }

@@ -66,49 +66,28 @@ public class VoleGenirique {
 
     //ER Party
     @OneToMany(
-//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "voleGenirique",
-            fetch = FetchType.LAZY
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
     )
     private Collection<Vole> vole;
+
     @ManyToOne
-//    @JoinColumn(
-//            name = "aeroport_depart",
-//            referencedColumnName = "aeroport_id",
-//            foreignKey = @ForeignKey(
-//                    name = "aeroport_id",
-//                    foreignKeyDefinition = "aeroport_depart_fk"
-//            )
-//    )
     private Aeroport depart;
+
     @ManyToOne
-//    @JoinColumn(
-//            name = "aeroport_arrive",
-//            referencedColumnName = "aeroport_id",
-//            foreignKey = @ForeignKey(
-//                    name = "aeroport_id",
-//                    foreignKeyDefinition = "aeroport_arrive_fk"
-//            )
-//    )
     private Aeroport arriver;
 
 
     @OneToMany(
-//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "vole_escale",
-            fetch = FetchType.EAGER
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
     )
-    private Collection<InfoEscale> info_escales_vole = new ArrayList<>();
-
+    private Collection<InfoEscale> info_escales_vole;
     // à triter
     @OneToOne
-//    @JoinColumn(
-//            name = "vole_genirique_id",
-//            referencedColumnName = "id",
-//            foreignKey = @ForeignKey(
-//                    name = "id",
-//                    foreignKeyDefinition = "vole_genirique_id_fk"
-//            )
-//    )
     private CompagniesAerienne compagniesAerienne;
 }

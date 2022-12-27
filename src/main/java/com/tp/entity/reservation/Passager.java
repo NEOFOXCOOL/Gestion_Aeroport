@@ -9,6 +9,7 @@ import com.tp.entity.reservation.Reservation;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @Getter
@@ -20,15 +21,15 @@ import java.util.List;
 public class Passager {
 
     @Id
-//    @SequenceGenerator(
-//            name = "passagersquence",
-//            sequenceName = "passagersquence",
-//            allocationSize = 1
-//    )
-//    @GeneratedValue(
-//            strategy = GenerationType.SEQUENCE,
-//            generator = "passagersquence"
-//    )
+    @SequenceGenerator(
+            name = "passagersquence",
+            sequenceName = "passagersquence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "passagersquence"
+    )
     @Column(
             name = "id_passager",
             nullable = false
@@ -53,12 +54,10 @@ public class Passager {
     @OneToMany(
             cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "passager",
-            fetch = FetchType.LAZY)
-    private List<Reservation> list_reservation ;
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    private Collection<Reservation> reservation ;
 
-    public void toReservation(Reservation reservation){
-        reservation.setPassager(this);
-        list_reservation.add(reservation);
-    }
 
 }

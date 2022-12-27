@@ -9,6 +9,7 @@ import lombok.*;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -81,14 +82,12 @@ public class Client {
 
     //ERD party
     @OneToMany(
-            mappedBy = "client"
+            mappedBy = "client",
+            orphanRemoval = true,
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
     )
-    private List<Reservation> list_reservation = new ArrayList<>();
+    private Collection<Reservation> reservation;
 
-    public void reserver(Reservation reservation){
-        reservation.setClient(this);
-            list_reservation.add(reservation);
-    }
 
 }
 

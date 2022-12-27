@@ -19,15 +19,15 @@ import java.util.Collection;
 public class CompagniesAerienne {
 
     @Id
-//    @SequenceGenerator(
-//            name = "compagnie_sequence",
-//            sequenceName = "compagnie_sequence",
-//            allocationSize = 1
-//    )
-//    @GeneratedValue(
-//            strategy = GenerationType.SEQUENCE,
-//            generator = "compagnie_sequence"
-//    )
+    @SequenceGenerator(
+            name = "compagnie_sequence",
+            sequenceName = "compagnie_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "compagnie_sequence"
+    )
     @Column(
             name = "compagnie_id",
             nullable = false
@@ -43,16 +43,18 @@ public class CompagniesAerienne {
 
     //ER Party
     @OneToMany(
-//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "compagniesAerienne",
-            fetch = FetchType.LAZY)
+            fetch = FetchType.LAZY,
+            orphanRemoval = true)
     private Collection<Vole> vole;
 
     //à triter
     @OneToOne(
-//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "compagniesAerienne",
-            fetch = FetchType.EAGER)
+            fetch = FetchType.EAGER,
+            orphanRemoval = true)
     private VoleGenirique voleCompanie = new VoleGenirique();
 
 }

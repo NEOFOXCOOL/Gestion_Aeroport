@@ -52,33 +52,29 @@ public class Aeroport {
 
     //ER Party
     @OneToMany(
-//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "depart",
-            fetch = FetchType.LAZY
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
     )
     private Collection<VoleGenirique> depart_vole;
 
 
     @OneToMany(
-//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "arriver",
-            fetch = FetchType.LAZY)
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
     private Collection<VoleGenirique> arriver_vole;
 
     @OneToMany(
-//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "aeroport_escale",
-            fetch = FetchType.EAGER
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
     )
-    private Collection<InfoEscale> info_escales_aeroport = new ArrayList<>();
+    private Collection<InfoEscale> info_escales_aeroport;
     @ManyToOne
-//    @JoinColumn(
-//            name = "ville_id",
-//            referencedColumnName = "name",
-//            foreignKey = @ForeignKey(
-//                    name = "name",
-//                    foreignKeyDefinition = "ville_id_fk"
-//            )
-//    )
     private Ville ville;
 }

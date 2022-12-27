@@ -37,18 +37,19 @@ public class Reserver {
         );
     }
 
-    public Passager passager(){
+    public  Passager passager(){
         return  new Passager(
                 passager_first_name,
                 passager_last_name
         );
     }
 
-    public Vole vole(){
+    public  Vole vole(){
         return  new Vole(
                 date_depart,
                 date_arrive
         );
     }
 
-}
+
+    }

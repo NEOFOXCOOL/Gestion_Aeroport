@@ -84,10 +84,16 @@ public class Client {
     @OneToMany(
             mappedBy = "client",
             orphanRemoval = true,
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+            cascade = CascadeType.PERSIST
     )
-    private Collection<Reservation> reservation;
+    private Collection<Reservation> reservations = new ArrayList<>();
 
 
+    public void Reserver(Reservation reservation){
+        if(!reservations.contains(reservation)){
+        reservations.add(reservation);
+        reservation.setClient(this);
+        }
+    }
 }
 

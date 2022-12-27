@@ -5,6 +5,7 @@
 */
 package com.tp.entity.vole;
 
+import jakarta.transaction.Transactional;
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -47,7 +48,6 @@ public class InfoEscale {
     )
     private LocalDateTime depart;
 
-    @Transient
     @Column(
             name = "intervale",
             nullable = false

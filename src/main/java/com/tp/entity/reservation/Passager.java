@@ -9,6 +9,7 @@ import com.tp.entity.reservation.Reservation;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class Passager {
             generator = "passagersquence"
     )
     @Column(
-            name = "id_passager",
+            name = "passager_id",
             nullable = false
 
     )
@@ -52,12 +53,17 @@ public class Passager {
     private String last_name;
     //ERD party
     @OneToMany(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = CascadeType.PERSIST,
             mappedBy = "passager",
             fetch = FetchType.LAZY,
             orphanRemoval = true
     )
-    private Collection<Reservation> reservation ;
-
+    private Collection<Reservation> reservations = new ArrayList<>() ;
+    public void Reserver(Reservation reservation){
+        if(!reservations.contains(reservation)){
+            reservations.add(reservation);
+            reservation.setPassager(this);
+        }
+    }
 
 }

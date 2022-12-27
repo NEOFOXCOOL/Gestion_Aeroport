@@ -19,15 +19,15 @@ import java.util.Collection;
 public class VoleGenirique {
 
     @Id
-//    @SequenceGenerator(
-//            name = "colegenirique_sequence",
-//            sequenceName = "colegenirique_sequence",
-//            allocationSize = 1
-//    )
-//    @GeneratedValue(
-//            strategy = GenerationType.SEQUENCE,
-//            generator = "colegenirique_sequence"
-//    )
+    @SequenceGenerator(
+            name = "colegenirique_sequence",
+            sequenceName = "colegenirique_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "colegenirique_sequence"
+    )
     @Column(
             name = "vole_genirique_id",
             nullable = false
@@ -66,7 +66,7 @@ public class VoleGenirique {
 
     //ER Party
     @OneToMany(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = CascadeType.ALL,
             mappedBy = "voleGenirique",
             fetch = FetchType.LAZY,
             orphanRemoval = true
@@ -81,7 +81,7 @@ public class VoleGenirique {
 
 
     @OneToMany(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = CascadeType.ALL,
             mappedBy = "vole_escale",
             fetch = FetchType.EAGER,
             orphanRemoval = true

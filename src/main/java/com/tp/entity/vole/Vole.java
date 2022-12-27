@@ -68,13 +68,18 @@ public class Vole {
             mappedBy = "vole",
             fetch = FetchType.LAZY,
             orphanRemoval = true,
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+            cascade = CascadeType.PERSIST
     )
-    private Collection<Reservation> reservation;
+    private Collection<Reservation> reservations = new ArrayList<>();
     @ManyToOne
     private VoleGenirique voleGenirique;
     @ManyToOne
     private CompagniesAerienne compagniesAerienne;
 
-
+    public void Reserver(Reservation reservation){
+        if(!reservations.contains(reservation)){
+            reservations.add(reservation);
+            reservation.setVole(this);
+        }
+    }
 }

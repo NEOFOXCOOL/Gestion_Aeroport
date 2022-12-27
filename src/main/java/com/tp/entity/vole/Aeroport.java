@@ -52,7 +52,7 @@ public class Aeroport {
 
     //ER Party
     @OneToMany(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = CascadeType.ALL,
             mappedBy = "depart",
             fetch = FetchType.LAZY,
             orphanRemoval = true
@@ -61,7 +61,7 @@ public class Aeroport {
 
 
     @OneToMany(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = CascadeType.ALL,
             mappedBy = "arriver",
             fetch = FetchType.LAZY,
             orphanRemoval = true
@@ -69,7 +69,7 @@ public class Aeroport {
     private Collection<VoleGenirique> arriver_vole;
 
     @OneToMany(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = CascadeType.ALL,
             mappedBy = "aeroport_escale",
             fetch = FetchType.LAZY,
             orphanRemoval = true

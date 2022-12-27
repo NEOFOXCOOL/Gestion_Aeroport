@@ -18,7 +18,7 @@ public class Ville {
 
     //ER party
     @OneToMany(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = CascadeType.ALL,
             mappedBy = "ville",
             fetch = FetchType.LAZY,
             orphanRemoval = true

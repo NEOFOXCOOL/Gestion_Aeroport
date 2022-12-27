@@ -26,7 +26,6 @@ private  final ReservationRepository reservationRepository;
 
     public void addReservation(Reserver reserver){
         Reservation reservation = new Reservation(
-                reserver.client(),
                 reserver.passager(),
                 reserver.vole()
         );

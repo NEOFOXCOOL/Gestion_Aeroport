@@ -43,17 +43,28 @@ public class Reservation {
     @ManyToOne(
             fetch = FetchType.LAZY
     )
-    @NonNull
+@JoinColumn(
+        name = "client_id",
+        referencedColumnName = "client_id"
+)
             private Client client;
 
     @ManyToOne(
             fetch = FetchType.LAZY
     )
     @NonNull
+    @JoinColumn(
+            name = "passager_id",
+            referencedColumnName = "passager_id"
+    )
             private Passager passager;
     @ManyToOne(
             fetch =  FetchType.LAZY
     )
     @NonNull
+    @JoinColumn(
+            name = "vole_id",
+            referencedColumnName = "vole_id"
+    )
             private Vole vole;
     }

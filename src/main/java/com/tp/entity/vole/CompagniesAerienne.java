@@ -43,7 +43,7 @@ public class CompagniesAerienne {
 
     //ER Party
     @OneToMany(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = CascadeType.ALL,
             mappedBy = "compagniesAerienne",
             fetch = FetchType.LAZY,
             orphanRemoval = true)
@@ -51,7 +51,7 @@ public class CompagniesAerienne {
 
     //à triter
     @OneToOne(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            cascade = CascadeType.ALL,
             mappedBy = "compagniesAerienne",
             fetch = FetchType.EAGER,
             orphanRemoval = true)

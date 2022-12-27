@@ -7,7 +7,9 @@ package com.tp.entity.reservation;
 
 import lombok.*;
 import jakarta.persistence.*;
-import java.util.Collection;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -28,20 +30,18 @@ import java.util.Collection;
 )
 public class Client {
     @Id
-    @SequenceGenerator(
-            name = "sequence_client",
-            sequenceName = "sequence_client",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "sequence_client"
-    )
+//    @SequenceGenerator(
+//            name = "sequence_client",
+//            sequenceName = "sequence_client",
+//            allocationSize = 1
+//    )
+//    @GeneratedValue(
+//            strategy = GenerationType.SEQUENCE,
+//            generator = "sequence_client"
+//    )
     @Column(
             name = "client_id",
-            nullable = false,
-            updatable = false,
-            insertable = false
+            nullable = false
     )
     private Long id;
 
@@ -84,10 +84,14 @@ public class Client {
 
     //ERD party
     @OneToMany(
-//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
-            mappedBy = "client",
-            fetch = FetchType.LAZY
+            mappedBy = "client"
     )
-    private Collection<Reservation> reservation ;
+    private List<Reservation> list_reservation = new ArrayList<>();
+
+    public void reserver(Reservation reservation){
+        reservation.setClient(this);
+            list_reservation.add(reservation);
+    }
 
 }
+

@@ -19,20 +19,18 @@ import java.util.Collection;
 public class CompagniesAerienne {
 
     @Id
-    @SequenceGenerator(
-            name = "compagnie_sequence",
-            sequenceName = "compagnie_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "compagnie_sequence"
-    )
+//    @SequenceGenerator(
+//            name = "compagnie_sequence",
+//            sequenceName = "compagnie_sequence",
+//            allocationSize = 1
+//    )
+//    @GeneratedValue(
+//            strategy = GenerationType.SEQUENCE,
+//            generator = "compagnie_sequence"
+//    )
     @Column(
             name = "compagnie_id",
-            nullable = false,
-            updatable = false,
-            insertable = false
+            nullable = false
     )
     private Long id;
 

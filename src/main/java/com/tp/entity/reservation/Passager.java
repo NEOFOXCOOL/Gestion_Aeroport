@@ -20,21 +20,19 @@ import java.util.List;
 public class Passager {
 
     @Id
-    @SequenceGenerator(
-            name = "passagersquence",
-            sequenceName = "passagersquence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "passagersquence"
-    )
-    @NonNull
+//    @SequenceGenerator(
+//            name = "passagersquence",
+//            sequenceName = "passagersquence",
+//            allocationSize = 1
+//    )
+//    @GeneratedValue(
+//            strategy = GenerationType.SEQUENCE,
+//            generator = "passagersquence"
+//    )
     @Column(
             name = "id_passager",
-            nullable = false,
-            updatable = false,
-            insertable = false
+            nullable = false
+
     )
     private Long id;
 
@@ -56,6 +54,11 @@ public class Passager {
             cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "passager",
             fetch = FetchType.LAZY)
-    private List<Reservation> reservation ;
+    private List<Reservation> list_reservation ;
+
+    public void toReservation(Reservation reservation){
+        reservation.setPassager(this);
+        list_reservation.add(reservation);
+    }
 
 }

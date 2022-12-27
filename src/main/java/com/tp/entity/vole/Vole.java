@@ -6,6 +6,7 @@
 package com.tp.entity.vole;
 
 import com.tp.entity.reservation.Reservation;
+import jakarta.transaction.Transactional;
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -17,26 +18,25 @@ import java.util.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Table(name = "vole")
 @Entity(name = "Vole")
 @ToString
 public class Vole {
 
     @Id
-    @SequenceGenerator(
-            name = "vole_sequence",
-            sequenceName = "vole_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "vole_sequence"
-    )
+//    @SequenceGenerator(
+//            name = "vole_sequence",
+//            sequenceName = "vole_sequence",
+//            allocationSize = 1
+//    )
+//    @GeneratedValue(
+//            strategy = GenerationType.SEQUENCE,
+//            generator = "vole_sequence"
+//    )
     @Column(
             name = "vole_id",
-            nullable = false,
-            updatable = false,
-            insertable = false
+            nullable = false
     )
     private Long id;
 
@@ -45,6 +45,7 @@ public class Vole {
             nullable = false,
             columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
+    @NonNull
     private LocalDateTime date_departure;
 
     @Column(
@@ -52,12 +53,14 @@ public class Vole {
             nullable = false,
             columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
+    @NonNull
     private LocalDateTime  date_arrive;
 
     @Column(
             name = "vole_interval",
             nullable = false
     )
+
     private Time interval;
 
     //ER Party
@@ -66,7 +69,7 @@ public class Vole {
             mappedBy = "vole",
             fetch = FetchType.LAZY
     )
-    private Collection<Reservation> reservation;
+    private Collection<Reservation> list_reservation;
     @ManyToOne
     @JoinColumn(
             name = "vole_genirique_id",
@@ -87,5 +90,10 @@ public class Vole {
             )
     )
     private CompagniesAerienne compagniesAerienne;
+
+    public void toReservation(Reservation reservation){
+        reservation.setVole(this);
+        list_reservation.add(reservation);
+    }
 
 }

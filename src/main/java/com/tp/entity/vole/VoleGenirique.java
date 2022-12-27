@@ -19,20 +19,18 @@ import java.util.Collection;
 public class VoleGenirique {
 
     @Id
-    @SequenceGenerator(
-            name = "colegenirique_sequence",
-            sequenceName = "colegenirique_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "colegenirique_sequence"
-    )
+//    @SequenceGenerator(
+//            name = "colegenirique_sequence",
+//            sequenceName = "colegenirique_sequence",
+//            allocationSize = 1
+//    )
+//    @GeneratedValue(
+//            strategy = GenerationType.SEQUENCE,
+//            generator = "colegenirique_sequence"
+//    )
     @Column(
             name = "vole_genirique_id",
-            nullable = false,
-            updatable = false,
-            insertable = false
+            nullable = false
     )
     private Long id;
 

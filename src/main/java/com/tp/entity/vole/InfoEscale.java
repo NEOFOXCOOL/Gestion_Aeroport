@@ -20,15 +20,15 @@ import java.time.LocalDateTime;
 public class InfoEscale {
 
     @Id
-    @SequenceGenerator(
-            name = "info_escale_sequence",
-            sequenceName = "info_escale_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "info_escale_sequence"
-    )
+//    @SequenceGenerator(
+//            name = "info_escale_sequence",
+//            sequenceName = "info_escale_sequence",
+//            allocationSize = 1
+//    )
+//    @GeneratedValue(
+//            strategy = GenerationType.SEQUENCE,
+//            generator = "info_escale_sequence"
+//    )
     @Column(
             name = "escale_id",
             nullable = false

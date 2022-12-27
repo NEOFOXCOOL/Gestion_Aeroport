@@ -71,24 +71,24 @@ public class Vole {
     )
     private Collection<Reservation> list_reservation;
     @ManyToOne
-    @JoinColumn(
-            name = "vole_genirique_id",
-            columnDefinition = "id",
-            foreignKey = @ForeignKey(
-                    name = "id",
-                    foreignKeyDefinition = "vole_genirique_id_fk"
-            )
-    )
+//    @JoinColumn(
+//            name = "vole_genirique_id",
+//            columnDefinition = "id",
+//            foreignKey = @ForeignKey(
+//                    name = "id",
+//                    foreignKeyDefinition = "vole_genirique_id_fk"
+//            )
+//    )
     private VoleGenirique voleGenirique;
     @ManyToOne
-    @JoinColumn(
-            name = "compagnie_id",
-            columnDefinition = "Compagnies Aerienne",
-            foreignKey = @ForeignKey(
-                    name = "id",
-                    foreignKeyDefinition = "compagnie_id_fk"
-            )
-    )
+//    @JoinColumn(
+//            name = "compagnie_id",
+//            columnDefinition = "Compagnies Aerienne",
+//            foreignKey = @ForeignKey(
+//                    name = "id",
+//                    foreignKeyDefinition = "compagnie_id_fk"
+//            )
+//    )
     private CompagniesAerienne compagniesAerienne;
 
     public void toReservation(Reservation reservation){

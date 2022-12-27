@@ -72,13 +72,13 @@ public class Aeroport {
     )
     private Collection<InfoEscale> info_escales_aeroport = new ArrayList<>();
     @ManyToOne
-    @JoinColumn(
-            name = "ville_id",
-            referencedColumnName = "name",
-            foreignKey = @ForeignKey(
-                    name = "name",
-                    foreignKeyDefinition = "ville_id_fk"
-            )
-    )
+//    @JoinColumn(
+//            name = "ville_id",
+//            referencedColumnName = "name",
+//            foreignKey = @ForeignKey(
+//                    name = "name",
+//                    foreignKeyDefinition = "ville_id_fk"
+//            )
+//    )
     private Ville ville;
 }

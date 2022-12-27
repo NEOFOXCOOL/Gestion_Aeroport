@@ -56,24 +56,24 @@ public class InfoEscale {
 
     //ER party
     @ManyToOne
-    @JoinColumn(
-            name = "aeroport_id",
-            referencedColumnName = "aeroport_id",
-            foreignKey = @ForeignKey(
-                    name = "id",
-                    foreignKeyDefinition = "aeroport_id_fk"
-            )
-    )
+//    @JoinColumn(
+//            name = "aeroport_id",
+//            referencedColumnName = "aeroport_id",
+//            foreignKey = @ForeignKey(
+//                    name = "id",
+//                    foreignKeyDefinition = "aeroport_id_fk"
+//            )
+//    )
 private Aeroport aeroport_escale;
     @ManyToOne
-    @JoinColumn(
-            name = "vole_genirique_id",
-            referencedColumnName = "vole_genirique_id",
-            foreignKey = @ForeignKey(
-                    name = "id",
-                    foreignKeyDefinition = "vole-genirique_id_fk"
-            )
-    )
+//    @JoinColumn(
+//            name = "vole_genirique_id",
+//            referencedColumnName = "vole_genirique_id",
+//            foreignKey = @ForeignKey(
+//                    name = "id",
+//                    foreignKeyDefinition = "vole-genirique_id_fk"
+//            )
+//    )
 private VoleGenirique vole_escale;
 
 }

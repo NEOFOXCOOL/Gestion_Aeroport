@@ -30,15 +30,15 @@ import java.util.List;
 )
 public class Client {
     @Id
-//    @SequenceGenerator(
-//            name = "sequence_client",
-//            sequenceName = "sequence_client",
-//            allocationSize = 1
-//    )
-//    @GeneratedValue(
-//            strategy = GenerationType.SEQUENCE,
-//            generator = "sequence_client"
-//    )
+    @SequenceGenerator(
+            name = "sequence_client",
+            sequenceName = "sequence_client",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "sequence_client"
+    )
     @Column(
             name = "client_id",
             nullable = false
@@ -60,17 +60,14 @@ public class Client {
     private String last_name;
 
     @Column(
-            name = "client_adresse",
-            nullable = false,
-            length = 25
+            name = "client_adresse"
     )
     @NonNull
     private String address;
 
     @Column(
             name = "client_telephone",
-            nullable = false,
-            length = 13
+            nullable = false
     )
     @NonNull
     private String telephone;

@@ -44,28 +44,28 @@ public class Reservation {
             fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST,CascadeType.REFRESH}
     )
-    @JoinColumn(
-            name = "client_id",
-            referencedColumnName = "client_id"
-
-    )
+//    @JoinColumn(
+//            name = "client_id",
+//            referencedColumnName = "client_id"
+//
+//    )
     @NonNull
             private Client client;
 
     @ManyToOne(
             fetch = FetchType.LAZY
     )
-    @JoinColumn(
-            name = "id_passager",
-            referencedColumnName = "id_passager"
-    )
+//    @JoinColumn(
+//            name = "id_passager",
+//            referencedColumnName = "id_passager"
+//    )
     @NonNull
             private Passager passager;
     @ManyToOne
-    @JoinColumn(
-            name = "vole_id",
-            referencedColumnName = "vole_id"
-    )
+//    @JoinColumn(
+//            name = "vole_id",
+//            referencedColumnName = "vole_id"
+//    )
     @NonNull
             private Vole vole;
     }

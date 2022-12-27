@@ -72,24 +72,24 @@ public class VoleGenirique {
     )
     private Collection<Vole> vole;
     @ManyToOne
-    @JoinColumn(
-            name = "aeroport_depart",
-            referencedColumnName = "aeroport_id",
-            foreignKey = @ForeignKey(
-                    name = "aeroport_id",
-                    foreignKeyDefinition = "aeroport_depart_fk"
-            )
-    )
+//    @JoinColumn(
+//            name = "aeroport_depart",
+//            referencedColumnName = "aeroport_id",
+//            foreignKey = @ForeignKey(
+//                    name = "aeroport_id",
+//                    foreignKeyDefinition = "aeroport_depart_fk"
+//            )
+//    )
     private Aeroport depart;
     @ManyToOne
-    @JoinColumn(
-            name = "aeroport_arrive",
-            referencedColumnName = "aeroport_id",
-            foreignKey = @ForeignKey(
-                    name = "aeroport_id",
-                    foreignKeyDefinition = "aeroport_arrive_fk"
-            )
-    )
+//    @JoinColumn(
+//            name = "aeroport_arrive",
+//            referencedColumnName = "aeroport_id",
+//            foreignKey = @ForeignKey(
+//                    name = "aeroport_id",
+//                    foreignKeyDefinition = "aeroport_arrive_fk"
+//            )
+//    )
     private Aeroport arriver;
 
 
@@ -102,13 +102,13 @@ public class VoleGenirique {
 
     // à triter
     @OneToOne
-    @JoinColumn(
-            name = "vole_genirique_id",
-            referencedColumnName = "id",
-            foreignKey = @ForeignKey(
-                    name = "id",
-                    foreignKeyDefinition = "vole_genirique_id_fk"
-            )
-    )
+//    @JoinColumn(
+//            name = "vole_genirique_id",
+//            referencedColumnName = "id",
+//            foreignKey = @ForeignKey(
+//                    name = "id",
+//                    foreignKeyDefinition = "vole_genirique_id_fk"
+//            )
+//    )
     private CompagniesAerienne compagniesAerienne;
 }

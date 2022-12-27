@@ -22,26 +22,26 @@ public class Confeguration {
     {
          return args -> {
 
-             Reserver reserver = new Reserver(
-                     "marri",
-                     "zakariae",
-                     "rabat",
-                     "0643454010",
-                     "marri@gmail.com",
-                     "marri",
-                     "zakariae",
-                     LocalDateTime.now().minusHours(5),
-                     LocalDateTime.now()
-             );
-
-        reservationRepository.save(
-                new Reservation(
-                        1L,
-                        LocalDateTime.now(),
-                        reserver.client(),
-                        reserver.passager(),
-                        reserver.vole()
-                ) );
+//             Reserver reserver = new Reserver(
+//                     "marri",
+//                     "zakariae",
+//                     "rabat",
+//                     "0643454010",
+//                     "marri@gmail.com",
+//                     "marri",
+//                     "zakariae",
+//                     LocalDateTime.now().minusHours(5),
+//                     LocalDateTime.now()
+//             );
+//
+//        reservationRepository.save(
+//                new Reservation(
+//                        1L,
+//                        LocalDateTime.now(),
+//                        reserver.client(),
+//                        reserver.passager(),
+//                        reserver.vole()
+//                ) );
 
             };
     }

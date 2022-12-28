@@ -51,19 +51,14 @@ public class Passager {
     )
     @NonNull
     private String last_name;
-    //ERD party
+
+//    ERD party
     @OneToMany(
-            cascade = CascadeType.PERSIST,
             mappedBy = "passager",
             fetch = FetchType.LAZY,
-            orphanRemoval = true
+            orphanRemoval = true,
+            cascade = CascadeType.ALL
     )
     private Collection<Reservation> reservations = new ArrayList<>() ;
-    public void Reserver(Reservation reservation){
-        if(!reservations.contains(reservation)){
-            reservations.add(reservation);
-            reservation.setPassager(this);
-        }
-    }
 
 }

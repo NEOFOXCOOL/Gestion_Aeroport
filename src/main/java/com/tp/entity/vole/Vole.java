@@ -7,10 +7,12 @@ package com.tp.entity.vole;
 
 import com.tp.entity.reservation.Reservation;
 import jakarta.transaction.Transactional;
+import jdk.jfr.Period;
 import lombok.*;
 
 import jakarta.persistence.*;
 import java.sql.Time;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -56,19 +58,15 @@ public class Vole {
     @NonNull
     private LocalDateTime  date_arrive;
 
-    @Column(
-            name = "vole_interval",
-            nullable = false
-    )
-
-    private Time interval;
+    @Transient
+    private int vol_period;
 
     //ER Party
     @OneToMany(
             mappedBy = "vole",
             fetch = FetchType.LAZY,
             orphanRemoval = true,
-            cascade = CascadeType.PERSIST
+            cascade = CascadeType.ALL
     )
     private Collection<Reservation> reservations = new ArrayList<>();
     @ManyToOne
@@ -76,10 +74,4 @@ public class Vole {
     @ManyToOne
     private CompagniesAerienne compagniesAerienne;
 
-    public void Reserver(Reservation reservation){
-        if(!reservations.contains(reservation)){
-            reservations.add(reservation);
-            reservation.setVole(this);
-        }
     }
-}

@@ -5,6 +5,7 @@
 */
 package com.tp.entity.reservation;
 
+import com.tp.entity.vole.Vole;
 import lombok.*;
 import jakarta.persistence.*;
 
@@ -84,14 +85,16 @@ public class Client {
     @OneToMany(
             mappedBy = "client",
             orphanRemoval = true,
-            cascade = CascadeType.PERSIST
+            cascade = CascadeType.ALL
     )
     private Collection<Reservation> reservations = new ArrayList<>();
 
 
-    public void Reserver(Reservation reservation){
+    public void Reserver(
+            Reservation reservation
+    ){
         if(!reservations.contains(reservation)){
-        reservations.add(reservation);
+            reservations.add(reservation);
         reservation.setClient(this);
         }
     }

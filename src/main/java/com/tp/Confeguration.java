@@ -30,34 +30,33 @@ public class Confeguration {
     {
          return args -> {
 
-
-             Reserver reserver = new Reserver(
+             Reservation reservation = new Reservation();
+             Client client = new Client(
                      "marri",
                      "zakariae",
                      "rabat",
                      "0643454010",
-                     "marri@gmail.com",
+                     "marri@gmail.com"
+             );
+             Passager passager = new Passager(
                      "marri",
-                     "zakariae",
+                     "zakariae"
+             );
+             Vole vole = new Vole(
                      LocalDateTime.now().minusHours(5),
                      LocalDateTime.now()
              );
+             client.Reserver(
+                     reservation,
+                     passager,
+                     vole
+             );
 
-             Reservation reservation = new Reservation();
+             clientRepository.save(client);
 
-             Client client = reserver.client();
-             client.Reserver(reservation);
 
-             Passager passager = reserver.passager();
-             passager.Reserver(reservation);
 
-             Vole vole = reserver.vole();
-             vole.Reserver(reservation);
-                clientRepository.save(client);
-                passagerRepository.save(passager);
-                voleRepository.save(vole);
-             reservationRepository.save(reservation);
-            };
+
+         };
     }
-
 }

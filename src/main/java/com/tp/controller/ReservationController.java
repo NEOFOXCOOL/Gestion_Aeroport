@@ -23,8 +23,4 @@ private final ReservationService reservationService;
         return  reservationService.reservation();
     }
 
-    @PostMapping(path = "/reserver")
-    public void resever(@RequestBody  Reserver reserver){
-        reservationService.addReservation(reserver);
-    }
 }

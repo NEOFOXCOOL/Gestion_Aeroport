@@ -5,23 +5,46 @@
 */
 package com.tp.entity.reservation;
 
-import com.tp.entity.reservation.Reservation;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
+@ToString
 @Entity(name = "Passager")
 @Table(name = "passager")
-@DiscriminatorValue("Pas")
-public class Passager extends  Person{
-@Override
-    public void reserver(Reservation reservation){
-    reservation.setPerson(this);
-}
+public class Passager{
+
+    @Id
+    @SequenceGenerator(
+            name = "passager_sequence",
+            sequenceName = "client_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "passager_sequence"
+    )
+    @Column(
+            name = "passager_id",
+            nullable = false
+    )
+    private Long id;
+
+    @Column(
+            name = "passager_first_name",
+            nullable = false
+    )
+    @NonNull
+    private String first_name;
+
+    @Column(
+            name = "passager_last_name",
+            nullable = false
+    )
+    @NonNull
+    private String last_name;
 }

@@ -5,19 +5,20 @@
 */
 package com.tp.entity.reservation;
 
-import com.tp.entity.vole.Vole;
 import lombok.*;
 import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Entity(name = "Client")
+@ToString
 @Table(
         name = "client",
         uniqueConstraints = {
@@ -27,25 +28,71 @@ import java.util.List;
                 )
         }
 )
-@DiscriminatorValue("CLI")
-public class Client extends Person{
+public class Client {
+
+
+    @Id
+    @SequenceGenerator(
+            name = "client_sequence",
+            sequenceName = "client_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "client_sequence"
+    )
+    @Column(
+            name = "client_id",
+            nullable = false
+    )
+    private Long id;
+
+    @Column(
+            name = "client_first_name"
+    )
+    @NonNull
+    private String first_name;
+
+    @Column(
+            name = "client_last_name"
+    )
+    @NonNull
+    private String last_name;
 
     @Column(
             name = "client_adresse"
     )
+    @NonNull
     private String address;
 
     @Column(
             name = "client_telephone",
             nullable = false
     )
+    @NonNull
     private String telephone;
 
     @Column(
             name = "client_email",
             nullable = false
     )
+    @NonNull
     private String email;
 
+    @OneToMany(
+            mappedBy = "client",
+            fetch =  FetchType.LAZY,
+            orphanRemoval = true,
+            cascade = {CascadeType.ALL}
+    )
+    @ToString.Exclude
+    private Collection<Reservation> reservations = new ArrayList<>();
+
+    public void addReservation(Reservation reservation){
+        if(!reservations.contains(reservation)){
+            reservations.add(reservation);
+            reservation.setClient(this);
+        }
+    }
 }
 

@@ -15,43 +15,62 @@ import java.time.LocalDateTime;
 @ToString
 public class Reservation {
 
-            @Id
-            @SequenceGenerator(
-                    name = "reservation_sequence",
-                    sequenceName = "reservation_sequence",
-                    allocationSize = 1
-            )
-            @GeneratedValue(
-                    strategy = GenerationType.SEQUENCE,
-                    generator = "reservation_sequence"
-            )
-            @Column(
-                    name = "reservation_id",
-                    nullable = false
-            )
-            private long num_reservation;
+    @EmbeddedId
+    private ReservationID id;
 
-            @Column(
+
+    @Column(
                     name = "date_reservation",
                     nullable = false,
                     columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
             )
             private LocalDateTime date_reservation = LocalDateTime.now();
 
-    @ManyToOne(
-            fetch = FetchType.LAZY
+
+        /*
+        * Client
+        * */
+@ManyToOne(
+            fetch =  FetchType.LAZY
     )
+    @MapsId("clientId")
+    @NonNull
     @JoinColumn(
-            name = "person_id",
-            referencedColumnName = "person_id",
+            name = "client_id",
+            referencedColumnName = "client_id",
             foreignKey = @ForeignKey(
-                    name = "person_id_fk"
+                    name = "client_id_fk"
             )
     )
-    private Person person;
+    @ToString.Exclude
+    private Client client;
+
+    /*
+     * Passager
+     * */
     @ManyToOne(
             fetch =  FetchType.LAZY
     )
+    @MapsId("passagerId")
+    @NonNull
+    @JoinColumn(
+            name = "passager_id",
+            referencedColumnName = "passager_id",
+            foreignKey = @ForeignKey(
+                    name = "passager_id_fk"
+            )
+    )
+    @ToString.Exclude
+    private Passager passager;
+
+
+    /*
+     * Vole
+     * */
+    @ManyToOne(
+            fetch =  FetchType.LAZY
+    )
+    @MapsId("voleId")
     @NonNull
     @JoinColumn(
             name = "vole_id",
@@ -60,6 +79,7 @@ public class Reservation {
                     name = "vole_id_fk"
             )
     )
-            private Vole vole;
+    @ToString.Exclude
+    private Vole vole;
 
     }

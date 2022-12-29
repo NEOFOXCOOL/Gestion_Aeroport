@@ -33,13 +33,13 @@ public class Confeguration {
             );
 
             Client client = new Client();
-
+            Reservation reservation = new Reservation();
             client.setFirst_name("marri");
             client.setLast_name("zakariae");
             client.setTelephone("0643454010");
             client.setAddress("rabat");
             client.setEmail("mari@gmail.com");
-          client.reserver(new Reservation());
+            client.reserver(reservation);
             personRepository.save(client);
         };
     }

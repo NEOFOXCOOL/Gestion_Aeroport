@@ -16,7 +16,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
 @AllArgsConstructor
 @Entity(name = "Client")
 @Table(
@@ -29,71 +28,27 @@ import java.util.List;
         }
 
 )
-public class Client {
-    @Id
-    @SequenceGenerator(
-            name = "sequence_client",
-            sequenceName = "sequence_client",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "sequence_client"
-    )
-    @Column(
-            name = "client_id",
-            nullable = false
-    )
-    private Long id;
-
-    @Column(
-            name = "client_first_name",
-            nullable = false
-    )
-    @NonNull
-    private String first_name;
-
-    @Column(
-            name = "client_last_name",
-            nullable = false
-    )
-    @NonNull
-    private String last_name;
+@DiscriminatorValue("CLI")
+public class Client extends Person{
 
     @Column(
             name = "client_adresse"
     )
-    @NonNull
     private String address;
 
     @Column(
             name = "client_telephone",
             nullable = false
     )
-    @NonNull
     private String telephone;
 
     @Column(
             name = "client_email",
             nullable = false
     )
-    @NonNull
     private String email;
 
-    //ERD party
-    @OneToMany(
-            mappedBy = "client",
-            orphanRemoval = true,
-            cascade = CascadeType.PERSIST
-    )
-    private Collection<Reservation> reservations = new ArrayList<>();
 
 
-    public void Reserver(Reservation reservation){
-        if(!reservations.contains(reservation)){
-        reservations.add(reservation);
-        reservation.setClient(this);
-        }
-    }
 }
 

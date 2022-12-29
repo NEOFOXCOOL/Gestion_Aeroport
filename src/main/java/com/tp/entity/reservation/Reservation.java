@@ -36,35 +36,30 @@ public class Reservation {
                     nullable = false,
                     columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
             )
-            @NonNull
             private LocalDateTime date_reservation = LocalDateTime.now();
 
-            //ER party
     @ManyToOne(
             fetch = FetchType.LAZY
     )
-@JoinColumn(
-        name = "client_id",
-        referencedColumnName = "client_id"
-)
-            private Client client;
-
-    @ManyToOne(
-            fetch = FetchType.LAZY
-    )
-    @NonNull
     @JoinColumn(
-            name = "passager_id",
-            referencedColumnName = "passager_id"
+            name = "person_id",
+            referencedColumnName = "person_id",
+            foreignKey = @ForeignKey(
+                    name = "person_id_fk"
+            )
     )
-            private Passager passager;
+    private Person person;
     @ManyToOne(
             fetch =  FetchType.LAZY
     )
     @NonNull
     @JoinColumn(
             name = "vole_id",
-            referencedColumnName = "vole_id"
+            referencedColumnName = "vole_id",
+            foreignKey = @ForeignKey(
+                    name = "vole_id_fk"
+            )
     )
             private Vole vole;
+
     }

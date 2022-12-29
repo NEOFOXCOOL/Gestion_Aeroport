@@ -11,20 +11,5 @@ import java.util.List;
 //@RequestMapping(path = "reservation")
 public class ReservationController {
 
-private final ReservationService reservationService;
 
-    public ReservationController(ReservationService reservationService) {
-        this.reservationService = reservationService;
-    }
-
-
-    @GetMapping(path = "/list_reservation")
-    public List<Reservation> listReservation(){
-        return  reservationService.reservation();
-    }
-
-    @PostMapping(path = "/reserver")
-    public void resever(@RequestBody  Reserver reserver){
-        reservationService.addReservation(reserver);
-    }
 }

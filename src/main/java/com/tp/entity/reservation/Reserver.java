@@ -26,30 +26,11 @@ public class Reserver {
     private LocalDateTime date_depart;
     private LocalDateTime date_arrive;
 
-
-    public Client client(){
-        return new Client(
-                client_fiert_name,
-                client_last_name,
-                client_address,
-                client_telephone,
-                client_email
-        );
-    }
-
-    public  Passager passager(){
-        return  new Passager(
-                passager_first_name,
-                passager_last_name
-        );
-    }
-
     public  Vole vole(){
         return  new Vole(
                 date_depart,
                 date_arrive
         );
     }
-
 
     }

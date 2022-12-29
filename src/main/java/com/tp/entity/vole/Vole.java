@@ -12,6 +12,7 @@ import lombok.*;
 import jakarta.persistence.*;
 import java.sql.Time;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.*;
 
 @Getter
@@ -57,18 +58,16 @@ public class Vole {
     private LocalDateTime  date_arrive;
 
     @Column(
-            name = "vole_interval",
-            nullable = false
+            name = "vole_interval"
     )
-
-    private Time interval;
+    private LocalDateTime interval;
 
     //ER Party
     @OneToMany(
             mappedBy = "vole",
             fetch = FetchType.LAZY,
             orphanRemoval = true,
-            cascade = CascadeType.PERSIST
+            cascade = CascadeType.ALL
     )
     private Collection<Reservation> reservations = new ArrayList<>();
     @ManyToOne
@@ -76,8 +75,8 @@ public class Vole {
     @ManyToOne
     private CompagniesAerienne compagniesAerienne;
 
-    public void Reserver(Reservation reservation){
-        if(!reservations.contains(reservation)){
+    public void Reserver(Reservation reservation) {
+        if (!reservations.contains(reservation)) {
             reservations.add(reservation);
             reservation.setVole(this);
         }

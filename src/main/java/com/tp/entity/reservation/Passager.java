@@ -16,54 +16,12 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
-@Entity
-@Table
-public class Passager {
-
-    @Id
-    @SequenceGenerator(
-            name = "passagersquence",
-            sequenceName = "passagersquence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "passagersquence"
-    )
-    @Column(
-            name = "passager_id",
-            nullable = false
-
-    )
-    private Long id;
-
-    @Column(
-            name = "passager_first_name",
-            nullable = false
-    )
-    @NonNull
-    private String first_name;
-
-    @Column(
-            name = "passager_last_name",
-            nullable = false
-    )
-    @NonNull
-    private String last_name;
-    //ERD party
-    @OneToMany(
-            cascade = CascadeType.PERSIST,
-            mappedBy = "passager",
-            fetch = FetchType.LAZY,
-            orphanRemoval = true
-    )
-    private Collection<Reservation> reservations = new ArrayList<>() ;
-    public void Reserver(Reservation reservation){
-        if(!reservations.contains(reservation)){
-            reservations.add(reservation);
-            reservation.setPassager(this);
-        }
-    }
-
+@Entity(name = "Passager")
+@Table(name = "passager")
+@DiscriminatorValue("Pas")
+public class Passager extends  Person{
+@Override
+    public void reserver(Reservation reservation){
+    reservation.setPerson(this);
+}
 }

@@ -38,8 +38,8 @@ public class Vole {
             generator = "vole_sequence"
     )
     @Column(
-            name = "vole_id",
-            nullable = false
+            name = "vole_id"
+//            nullable = false
     )
     private Long voleID;
 
@@ -51,7 +51,7 @@ public class Vole {
 
     @Column(
             name = "vole_date_depart",
-            nullable = false,
+//            nullable = false,
             columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
     private LocalDateTime date_departure;
@@ -64,7 +64,7 @@ public class Vole {
 
     @Column(
             name = "vole_date_arrive",
-            nullable = false,
+//            nullable = false,
             columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
     private LocalDateTime  date_arrive;

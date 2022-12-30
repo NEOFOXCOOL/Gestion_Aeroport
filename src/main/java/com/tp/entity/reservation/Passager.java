@@ -36,8 +36,8 @@ public class Passager{
             generator = "passager_sequence"
     )
     @Column(
-            name = "passager_id",
-            nullable = false
+            name = "passager_id"
+//            nullable = false
     )
     private Long passagerID;
 
@@ -47,8 +47,8 @@ public class Passager{
      * */
 
     @Column(
-            name = "passager_first_name",
-            nullable = false
+            name = "passager_first_name"
+//            nullable = false
     )
     private String first_name;
 
@@ -58,8 +58,8 @@ public class Passager{
      * */
 
     @Column(
-            name = "passager_last_name",
-            nullable = false
+            name = "passager_last_name"
+//            nullable = false
     )
     private String last_name;
 

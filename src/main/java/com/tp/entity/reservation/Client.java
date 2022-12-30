@@ -45,8 +45,8 @@ public class Client {
             generator = "client_sequence"
     )
     @Column(
-            name = "client_id",
-            nullable = false
+            name = "client_id"
+//            nullable = false
     )
     private Long clientID;
 
@@ -57,8 +57,8 @@ public class Client {
     * */
 
     @Column(
-            name = "client_first_name",
-            nullable = false
+            name = "client_first_name"
+//            nullable = false
     )
     private String first_name;
 
@@ -68,8 +68,8 @@ public class Client {
      * */
 
     @Column(
-            name = "client_last_name",
-            nullable = false
+            name = "client_last_name"
+//            nullable = false
     )
     private String last_name;
 
@@ -79,8 +79,8 @@ public class Client {
      * */
 
     @Column(
-            name = "client_adresse",
-            nullable = false
+            name = "client_adresse"
+//            nullable = false
     )
     private String address;
 
@@ -90,8 +90,8 @@ public class Client {
     * */
 
     @Column(
-            name = "client_telephone",
-            nullable = false
+            name = "client_telephone"
+//            nullable = false
     )
     private String telephone;
 
@@ -101,8 +101,8 @@ public class Client {
     * */
 
     @Column(
-            name = "client_email",
-            nullable = false
+            name = "client_email"
+//            nullable = false
     )
     private String email;
 

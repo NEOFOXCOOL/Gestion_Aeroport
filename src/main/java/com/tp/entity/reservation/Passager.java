@@ -8,6 +8,9 @@ package com.tp.entity.reservation;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -47,4 +50,11 @@ public class Passager{
     )
     @NonNull
     private String last_name;
+
+    @OneToMany(
+            mappedBy = "passager",
+            cascade = {CascadeType.ALL}
+    )
+    @ToString.Exclude
+    private Collection<Reservation> reservations = new ArrayList<>();
 }

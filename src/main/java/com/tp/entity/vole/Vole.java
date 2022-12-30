@@ -65,9 +65,7 @@ public class Vole {
     //ER Party
     @OneToMany(
             mappedBy = "vole",
-            fetch = FetchType.LAZY,
-            orphanRemoval = true,
-            cascade = CascadeType.ALL
+            cascade = {CascadeType.ALL}
     )
     @ToString.Exclude
     private Collection<Reservation> reservations = new ArrayList<>();

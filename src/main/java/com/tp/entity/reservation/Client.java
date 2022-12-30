@@ -81,8 +81,6 @@ public class Client {
 
     @OneToMany(
             mappedBy = "client",
-            fetch =  FetchType.LAZY,
-            orphanRemoval = true,
             cascade = {CascadeType.ALL}
     )
     @ToString.Exclude

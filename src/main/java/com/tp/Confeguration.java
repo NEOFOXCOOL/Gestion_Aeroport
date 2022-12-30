@@ -19,21 +19,21 @@ public class Confeguration {
     public CommandLineRunner commandLineRunner(ClientRepository clientRepository) {
         return args -> {
 
-//            Client client = new Client(
-//                    "marri",
-//                    "zakariae",
-//                    "rabat",
-//                    "0643454010",
-//                    "marri@gmail.com"
-//            );
-//
-//            client.addReservation(new Reservation(
-//                    client,
-//                    new Passager("marri", "zakariae"),
-//                    new Vole(LocalDateTime.now().minusHours(5), LocalDateTime.now())
-//            ));
-//
-//            clientRepository.save(client);
+            Client client = new Client(
+                    "marri",
+                    "zakariae",
+                    "rabat",
+                    "0643454010",
+                    "marri@gmail.com"
+            );
+
+            client.addReservation(new Reservation(
+                    client,
+                    new Passager("marri", "zakariae"),
+                    new Vole(LocalDateTime.now().minusHours(5), LocalDateTime.now())
+            ));
+
+            clientRepository.save(client);
 
         };
     }

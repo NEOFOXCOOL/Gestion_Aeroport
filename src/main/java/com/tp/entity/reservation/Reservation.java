@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Entity
-@Table
+@Entity(name = "Reservation")
+@Table(name = "reservation")
 @ToString
 public class Reservation {
 
@@ -30,14 +30,11 @@ public class Reservation {
         /*
         * Client
         * */
-@ManyToOne(
-            fetch =  FetchType.LAZY
-    )
-    @MapsId("clientId")
+    @ManyToOne()
+    @MapsId("client_id")
     @NonNull
     @JoinColumn(
             name = "client_id",
-            referencedColumnName = "client_id",
             foreignKey = @ForeignKey(
                     name = "client_id_fk"
             )
@@ -48,14 +45,11 @@ public class Reservation {
     /*
      * Passager
      * */
-    @ManyToOne(
-            fetch =  FetchType.LAZY
-    )
-    @MapsId("passagerId")
+    @ManyToOne()
+    @MapsId("passager_id")
     @NonNull
     @JoinColumn(
             name = "passager_id",
-            referencedColumnName = "passager_id",
             foreignKey = @ForeignKey(
                     name = "passager_id_fk"
             )
@@ -67,14 +61,11 @@ public class Reservation {
     /*
      * Vole
      * */
-    @ManyToOne(
-            fetch =  FetchType.LAZY
-    )
-    @MapsId("voleId")
+    @ManyToOne()
+    @MapsId("vole_id")
     @NonNull
     @JoinColumn(
             name = "vole_id",
-            referencedColumnName = "vole_id",
             foreignKey = @ForeignKey(
                     name = "vole_id_fk"
             )

@@ -6,24 +6,26 @@
 package com.tp.entity.vole;
 
 import com.tp.entity.reservation.Reservation;
-import jakarta.transaction.Transactional;
+import jakarta.persistence.*;
 import lombok.*;
 
-import jakarta.persistence.*;
-import java.sql.Time;
 import java.time.LocalDateTime;
-import java.time.Period;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Table(name = "vole")
 @Entity(name = "Vole")
 @ToString
 public class Vole {
+
+    /*
+    * ID Vole Sequence Generator (vole_sequence) with Strategy SEQUENCE
+    * Column name is : vole_id
+    * */
 
     @Id
     @SequenceGenerator(
@@ -39,39 +41,63 @@ public class Vole {
             name = "vole_id",
             nullable = false
     )
-    private Long id;
+    private Long voleID;
+
+    /*
+     * Date of Starting Vole.
+     * Type : LocaleDateTime
+     * Column : vole_date_depart, Def (TIMESTAMP WITHOUT TIME ZONE) and nonnull
+     * */
 
     @Column(
             name = "vole_date_depart",
             nullable = false,
             columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
-    @NonNull
     private LocalDateTime date_departure;
+
+    /*
+     * Date of Ending Vole.
+     * Type : LocaleDateTime
+     * Column : vole_date_arrive, Def (TIMESTAMP WITHOUT TIME ZONE) and nonnull
+     * */
 
     @Column(
             name = "vole_date_arrive",
             nullable = false,
             columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
-    @NonNull
     private LocalDateTime  date_arrive;
+
+    /*
+     * Date of Margin between starting date of vole end ending.
+     * Type : LocaleDateTime
+     * Column : vole_interval
+     * */
 
     @Column(
             name = "vole_interval"
     )
     private LocalDateTime interval;
 
-    //ER Party
+
+    /*
+    * Mapping RelationShip with Table : reservations, voleGenirique and compagniesAerienne
+    *
+    * */
+
     @OneToMany(
             mappedBy = "vole",
             cascade = {CascadeType.ALL}
     )
-    @ToString.Exclude
     private Collection<Reservation> reservations = new ArrayList<>();
     @ManyToOne
     private VoleGenirique voleGenirique;
     @ManyToOne
     private CompagniesAerienne compagniesAerienne;
 
+    public Vole(LocalDateTime date_departure, LocalDateTime date_arrive) {
+        this.date_departure = date_departure;
+        this.date_arrive = date_arrive;
+    }
 }

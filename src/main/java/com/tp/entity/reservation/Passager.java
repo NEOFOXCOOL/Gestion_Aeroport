@@ -15,16 +15,20 @@ import java.util.Collection;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @ToString
 @Entity(name = "Passager")
 @Table(name = "passager")
 public class Passager{
 
+    /*
+     * ID Vole Sequence Generator (passager_sequence) with Strategy SEQUENCE
+     * Column name is : passager_id
+     * */
+
     @Id
     @SequenceGenerator(
             name = "passager_sequence",
-            sequenceName = "client_sequence",
+            sequenceName = "passager_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
@@ -35,26 +39,41 @@ public class Passager{
             name = "passager_id",
             nullable = false
     )
-    private Long id;
+    private Long passagerID;
+
+    /*
+     * Passager first name type String
+     * Column name is : passager_first_name
+     * */
 
     @Column(
             name = "passager_first_name",
             nullable = false
     )
-    @NonNull
     private String first_name;
+
+    /*
+     * Passager last name type String
+     * Column name is : passager_last_name
+     * */
 
     @Column(
             name = "passager_last_name",
             nullable = false
     )
-    @NonNull
     private String last_name;
 
+    /*
+    * Mapping Table
+    * */
     @OneToMany(
             mappedBy = "passager",
             cascade = {CascadeType.ALL}
     )
-    @ToString.Exclude
     private Collection<Reservation> reservations = new ArrayList<>();
+
+    public Passager(String first_name, String last_name) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+    }
 }

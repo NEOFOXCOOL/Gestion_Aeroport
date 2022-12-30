@@ -16,7 +16,6 @@ import java.util.Collection;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Entity(name = "Client")
 @ToString
 @Table(
@@ -30,6 +29,10 @@ import java.util.Collection;
 )
 public class Client {
 
+    /*
+     * ID client
+     * Column name is : client_id
+     * */
 
     @Id
     @SequenceGenerator(
@@ -45,46 +48,87 @@ public class Client {
             name = "client_id",
             nullable = false
     )
-    private Long id;
+    private Long clientID;
+
+
+    /*
+    *  Client first name
+    *  Column name : client_first_name
+    * */
 
     @Column(
-            name = "client_first_name"
+            name = "client_first_name",
+            nullable = false
     )
-    @NonNull
     private String first_name;
 
-    @Column(
-            name = "client_last_name"
-    )
-    @NonNull
-    private String last_name;
+    /*
+     *  Client last name
+     *  Column name : client_last_name
+     * */
 
     @Column(
-            name = "client_adresse"
+            name = "client_last_name",
+            nullable = false
     )
-    @NonNull
+    private String last_name;
+
+    /*
+     *  Client  Address
+     *  Column name : client_address
+     * */
+
+    @Column(
+            name = "client_adresse",
+            nullable = false
+    )
     private String address;
+
+    /*
+    * Client Telephone
+    *  Column name client_telephone
+    * */
 
     @Column(
             name = "client_telephone",
             nullable = false
     )
-    @NonNull
     private String telephone;
+
+    /*
+    * Client Email
+    * Column name client_email
+    * */
 
     @Column(
             name = "client_email",
             nullable = false
     )
-    @NonNull
     private String email;
+
+    /*
+    * Mapping RelationShip between Tables
+    * */
 
     @OneToMany(
             mappedBy = "client",
             cascade = {CascadeType.ALL}
     )
-    @ToString.Exclude
     private Collection<Reservation> reservations = new ArrayList<>();
+
+    public Client(
+            String first_name,
+            String last_name,
+            String address,
+            String telephone,
+            String email
+    ) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.address = address;
+        this.telephone = telephone;
+        this.email = email;
+    }
 
     public void addReservation(Reservation reservation){
         if(!reservations.contains(reservation)){

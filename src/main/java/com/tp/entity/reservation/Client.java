@@ -5,6 +5,8 @@
 */
 package com.tp.entity.reservation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import jakarta.persistence.*;
 
@@ -46,7 +48,7 @@ public class Client {
     )
     @Column(
             name = "client_id"
-//            nullable = false
+            ,nullable = false
     )
     private Long clientID;
 
@@ -58,7 +60,7 @@ public class Client {
 
     @Column(
             name = "client_first_name"
-//            nullable = false
+            ,nullable = false
     )
     private String first_name;
 
@@ -69,7 +71,7 @@ public class Client {
 
     @Column(
             name = "client_last_name"
-//            nullable = false
+            ,nullable = false
     )
     private String last_name;
 
@@ -80,7 +82,7 @@ public class Client {
 
     @Column(
             name = "client_adresse"
-//            nullable = false
+            ,nullable = false
     )
     private String address;
 
@@ -91,7 +93,7 @@ public class Client {
 
     @Column(
             name = "client_telephone"
-//            nullable = false
+            ,nullable = false
     )
     private String telephone;
 
@@ -102,7 +104,7 @@ public class Client {
 
     @Column(
             name = "client_email"
-//            nullable = false
+            ,nullable = false
     )
     private String email;
 
@@ -112,8 +114,10 @@ public class Client {
 
     @OneToMany(
             mappedBy = "client",
-            cascade = {CascadeType.ALL}
+            cascade = {CascadeType.ALL},
+            fetch =  FetchType.LAZY
     )
+    @JsonIgnore
     private Collection<Reservation> reservations = new ArrayList<>();
 
     public Client(
@@ -135,6 +139,10 @@ public class Client {
             reservations.add(reservation);
             reservation.setClient(this);
         }
+    }
+
+    public void  removeReservation(Reservation reservation){
+        reservations.remove(reservation);
     }
 }
 

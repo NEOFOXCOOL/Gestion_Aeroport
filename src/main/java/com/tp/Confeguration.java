@@ -11,7 +11,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.text.DateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Configuration
 public class Confeguration {
@@ -22,22 +24,34 @@ public class Confeguration {
         return args -> {
 
 
-//            Client client = new Client(
+//            Reserver  reserver = new Reserver(
 //                    "marri",
 //                    "zakariae",
 //                    "rabat",
 //                    "0643454010",
-//                    "marri@gmail.com"
+//                    "marri@gmail.com",
+//                    "marri",
+//                    "zakariae",
+//                    new Date(2022/12/30),
+//                    new Date(2022/12/31)
+//
 //            );
 //
+//            Client client  = new Client(
+//                    reserver.getClient_first_name(),
+//                    reserver.getClient_last_name(),
+//                    reserver.getAddress(),
+//                    reserver.getTelephone(),
+//                    reserver.getEmail()
+//            );
 //            Passager passager = new Passager(
-//                    "marri",
-//                    "zakariae"
+//                    reserver.getPassager_first_name(),
+//                    reserver.getPassager_last_name()
 //            );
 //
 //            Vole vole = new Vole(
-//                    LocalDateTime.now().minusHours(5),
-//                    LocalDateTime.now()
+//                    reserver.getStart_vole(),
+//                    reserver.getEnd_vole()
 //            );
 //
 //            client.addReservation(new Reservation(

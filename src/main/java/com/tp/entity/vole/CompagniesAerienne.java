@@ -55,6 +55,6 @@ public class CompagniesAerienne {
             mappedBy = "compagniesAerienne",
             fetch = FetchType.EAGER,
             orphanRemoval = true)
-    private VoleGenirique voleCompanie = new VoleGenirique();
+    private VoleGenirique  voleCompanie  = new VoleGenirique();
 
 }

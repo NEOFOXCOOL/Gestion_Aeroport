@@ -37,7 +37,7 @@ public class Passager{
     )
     @Column(
             name = "passager_id"
-//            nullable = false
+            ,nullable = false
     )
     private Long passagerID;
 
@@ -48,7 +48,7 @@ public class Passager{
 
     @Column(
             name = "passager_first_name"
-//            nullable = false
+            ,nullable = false
     )
     private String first_name;
 
@@ -59,7 +59,7 @@ public class Passager{
 
     @Column(
             name = "passager_last_name"
-//            nullable = false
+            ,nullable = false
     )
     private String last_name;
 

@@ -1,12 +1,13 @@
 package com.tp.entity.reservation;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tp.entity.vole.Vole;
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity(name = "Reservation")
 @Table(name = "reservation")
+@JsonIgnoreProperties({"client"})
 public class Reservation {
 
     /*

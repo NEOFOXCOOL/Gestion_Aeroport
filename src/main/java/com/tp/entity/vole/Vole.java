@@ -5,13 +5,16 @@
 */
 package com.tp.entity.vole;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tp.entity.reservation.Reservation;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -39,7 +42,7 @@ public class Vole {
     )
     @Column(
             name = "vole_id"
-//            nullable = false
+            ,nullable = false
     )
     private Long voleID;
 
@@ -51,10 +54,10 @@ public class Vole {
 
     @Column(
             name = "vole_date_depart",
-//            nullable = false,
-            columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
+            nullable = false
     )
-    private LocalDateTime date_departure;
+    @JsonFormat(pattern = "yyyy/MM/dd")
+    private Date date_departure;
 
     /*
      * Date of Ending Vole.
@@ -64,10 +67,10 @@ public class Vole {
 
     @Column(
             name = "vole_date_arrive",
-//            nullable = false,
-            columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
+            nullable = false
     )
-    private LocalDateTime  date_arrive;
+    @JsonFormat(pattern = "yyyy/MM/dd")
+    private Date  date_arrive;
 
     /*
      * Date of Margin between starting date of vole end ending.
@@ -86,17 +89,17 @@ public class Vole {
     *
     * */
 
-    @OneToMany(
-            mappedBy = "vole",
-            cascade = {CascadeType.ALL}
-    )
-    private Collection<Reservation> reservations = new ArrayList<>();
+//    @OneToMany(
+//            mappedBy = "vole",
+//            cascade = {CascadeType.ALL}
+//    )
+//    private Collection<Reservation> reservations = new ArrayList<>();
     @ManyToOne
     private VoleGenirique voleGenirique;
     @ManyToOne
     private CompagniesAerienne compagniesAerienne;
 
-    public Vole(LocalDateTime date_departure, LocalDateTime date_arrive) {
+    public Vole(Date date_departure, Date date_arrive) {
         this.date_departure = date_departure;
         this.date_arrive = date_arrive;
     }

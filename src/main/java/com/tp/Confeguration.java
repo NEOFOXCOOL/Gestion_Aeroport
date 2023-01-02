@@ -1,19 +1,9 @@
 package com.tp;
 
-import com.tp.entity.Reserver;
-import com.tp.entity.reservation.Client;
-import com.tp.entity.reservation.Passager;
-import com.tp.entity.reservation.Reservation;
-import com.tp.entity.reservation.ReservationID;
-import com.tp.entity.vole.Vole;
 import com.tp.repository.ClientRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.text.DateFormat;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @Configuration
 public class Confeguration {

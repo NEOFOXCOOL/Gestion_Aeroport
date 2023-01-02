@@ -131,4 +131,35 @@ public class ReservationService {
             throw new RuntimeException(e.getMessage());
         }
     }
+
+    public void deleteReservation(Long id){
+        try{
+            Reservation reservation =  reservationRepository.findReservationById_ClientID(id);
+            if(reservation != null){
+                reservationRepository.delete(reservation);
+            }
+            else {
+                throw new ResourceNotfound("reservation not found with this id");
+            }
+        }
+        catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
+    }
+
+    public void deleteClient(Long id){
+        Client client = clientRepository.findByClientID(id);
+            try{
+                if(clientRepository.findById(id).isPresent()){
+                    clientRepository.delete(client);
+                }
+                else{
+                    throw  new ResourceNotfound("note found client with this name ");
+                }
+            }
+            catch (Exception e){
+              throw new RuntimeException(e.getMessage());
+            }
+
+    }
 }

@@ -144,5 +144,6 @@ public class Client {
     public void  removeReservation(Reservation reservation){
         reservations.remove(reservation);
     }
+
 }
 

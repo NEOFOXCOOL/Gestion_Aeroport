@@ -27,7 +27,7 @@ private final ReservationService reservationService;
     }
 
     @PutMapping(path = "update/{id}")
-    public void updateReservation(@PathVariable("id") long id,@RequestBody Reserver reserver){
+    public void updateReservation(@PathVariable Long id,@RequestBody Reserver reserver){
         reservationService.updateReservation(id,reserver);
     }
 }

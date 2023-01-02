@@ -81,10 +81,10 @@ public class ReservationService {
 
     public void updateReservation(Long id,Reserver reserver){
         try {
-                Reservation reservation = reservationRepository.findReservationById(id);
+                Reservation reservation = reservationRepository.findReservationById_ClientID(id);
             if
             (
-                    reservationRepository.findById(id).isPresent()
+                    reservation != null
             )
             {
                 //client

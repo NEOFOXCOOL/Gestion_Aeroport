@@ -25,4 +25,9 @@ private final ReservationService reservationService;
     public void nesReservation(@RequestBody Reserver reserver){
         reservationService.newReservation(reserver);
     }
+
+    @PutMapping(path = "update/{id}")
+    public void updateReservation(@PathVariable("id") long id,@RequestBody Reserver reserver){
+        reservationService.updateReservation(id,reserver);
+    }
 }

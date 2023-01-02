@@ -56,7 +56,7 @@ public class Confeguration {
 //
 //            client.addReservation(new Reservation(
 //                    new ReservationID(1L,1L,1L),
-//                    LocalDateTime.now(),
+//                   LocalDateTime.now(),
 //                    client,
 //                    passager,
 //                    vole
@@ -77,38 +77,8 @@ public class Confeguration {
 //        "email":"marri@gmail.com",
 //        "passager_first_name":"marri",
 //        "passager_last_name":"zakariae",
-//        "start_vole": {
-//        "year" : 2010,
-//        "month" : "JANUARY",
-//        "dayOfMonth" : 1,
-//        "dayOfWeek" : "FRIDAY",
-//        "dayOfYear" : 1,
-//        "monthValue" : 1,
-//        "hour" : 2,
-//        "minute" : 2,
-//        "second" : 0,
-//        "nano" : 0,
-//        "chronology" : {
-//        "id" : "ISO",
-//        "calendarType" : "iso8601"
-//        }
-//        },
-//        "end_vole": {
-//        "year" : 2010,
-//        "month" : "JANUARY",
-//        "dayOfMonth" : 1,
-//        "dayOfWeek" : "FRIDAY",
-//        "dayOfYear" : 1,
-//        "monthValue" : 1,
-//        "hour" : 4,
-//        "minute" : 2,
-//        "second" : 0,
-//        "nano" : 0,
-//        "chronology" : {
-//        "id" : "ISO",
-//        "calendarType" : "iso8601"
-//        }
-//        }
+//        "start_vole":"2023-01-02",
+//        "end_vole":"2023-01-03"
 //        }
 
 

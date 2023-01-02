@@ -1,11 +1,7 @@
 package com.tp.entity;
 
-import com.tp.entity.reservation.Client;
-import com.tp.entity.reservation.Passager;
-import com.tp.entity.vole.Vole;
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @AllArgsConstructor

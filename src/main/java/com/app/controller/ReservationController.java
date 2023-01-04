@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@RequestMapping(path = "reservation")
+@RequestMapping(path = "app")
 public class ReservationController {
 
 private final ReservationService reservationService;

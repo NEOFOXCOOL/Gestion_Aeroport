@@ -33,6 +33,8 @@ public class User  implements UserDetails {
     private String user_name;
     private String password;
     private String email;
+
+    @Enumerated
     private Roles roles;
 
     @Override

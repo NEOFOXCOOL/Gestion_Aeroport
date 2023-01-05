@@ -1,4 +1,4 @@
-package com.app.security;
+package com.app.security.user;
 
 
 import jakarta.persistence.*;

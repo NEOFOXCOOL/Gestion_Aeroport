@@ -7,7 +7,6 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.crypto.SecretKey;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,27 +20,35 @@ public class JwtService {
         return null;
     }
 
+    //extract one claims
     public <T> T extractClaims(String token, Function<Claims,T> claimsResolver){
         final  Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
+
+    //extract all claims
     public Claims extractAllClaims(String token){
         return Jwts
                 .parserBuilder()
-                .setSigningKey(getSignKey())
+                .setSigningKey(getSignInKey())
                 .build()
                 .parseClaimsJwt(token)
                 .getBody();
     }
 
-    private Key getSignKey() {
+//Decoders Sign In Key
+    private Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public String generateToken(UserDetails userDetails){
+    //Generate Token
+    public String generateToken(UserDetails userDetails)
+    {
         return generateToken(new HashMap<>(),userDetails);
     }
+
+    //add Extra Claims
     public String generateToken(
             Map<String, Object> extraClaims,
             UserDetails userDetails
@@ -52,15 +59,19 @@ public class JwtService {
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
-                .signWith(getSignKey(), SignatureAlgorithm.ES256)
+                .signWith(getSignInKey(), SignatureAlgorithm.ES256)
                 .compact();
     }
 
+
+    //Validation of Token with user details (make shor the token is belongs to userDetails)
     public boolean isTokenValid(String token, UserDetails userDetails){
         final String username = extractUsername(token);
+        assert username != null;
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
+    //Validation of Expiration date for token
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }

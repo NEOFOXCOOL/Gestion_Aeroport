@@ -1,13 +1,13 @@
-package com.app.services;
+package com.app.manager.services;
 
-import com.app.entity.Reserver;
-import com.app.entity.reservation.Client;
-import com.app.entity.reservation.Passager;
-import com.app.entity.reservation.Reservation;
-import com.app.entity.reservation.ReservationID;
-import com.app.entity.vole.Vole;
-import com.app.repository.ClientRepository;
-import com.app.repository.ReservationRepository;
+import com.app.manager.entity.Reserver;
+import com.app.manager.entity.reservation.Client;
+import com.app.manager.entity.reservation.Passager;
+import com.app.manager.entity.reservation.Reservation;
+import com.app.manager.entity.reservation.ReservationID;
+import com.app.manager.entity.vole.Vole;
+import com.app.manager.repository.ClientRepository;
+import com.app.manager.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;

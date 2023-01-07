@@ -1,4 +1,4 @@
-package com.app.entity.reservation;
+package com.app.manager.entity.reservation;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

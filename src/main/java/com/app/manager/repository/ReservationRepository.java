@@ -1,8 +1,7 @@
-package com.app.repository;
+package com.app.manager.repository;
 
-import com.app.entity.reservation.Reservation;
+import com.app.manager.entity.reservation.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.rest.webmvc.RepositoryRestController;
 
 import java.util.Optional;
 

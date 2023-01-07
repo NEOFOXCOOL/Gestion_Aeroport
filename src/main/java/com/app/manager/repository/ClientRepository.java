@@ -1,6 +1,6 @@
-package com.app.repository;
+package com.app.manager.repository;
 
-import com.app.entity.reservation.Client;
+import com.app.manager.entity.reservation.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

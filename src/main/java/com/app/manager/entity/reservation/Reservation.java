@@ -1,7 +1,7 @@
-package com.app.entity.reservation;
+package com.app.manager.entity.reservation;
 
+import com.app.manager.entity.vole.Vole;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.app.entity.vole.Vole;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 

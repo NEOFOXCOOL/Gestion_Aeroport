@@ -2,28 +2,27 @@ package com.app.security.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/auth")
+@RequestMapping(path = "/api/v1/auth/")
 public class AuthenticationController {
 
-    @PostMapping("/register")
+    private final AuthenticationService authService;
+
+    @PostMapping(path ="/register")
     public ResponseEntity<AuthenticationResponse> register(
-            @ResponseBody RegisterRequest reqest
+            @RequestBody RegisterRequest request
     ){
-        //
+        return ResponseEntity.ok(authService.register(request));
     }
 
-    @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> register(
-            @ResponseBody AuthenticationRequest reqest
+    @PostMapping(path = "/authenticate")
+    public ResponseEntity<AuthenticationResponse> authenticate(
+            @RequestBody AuthenticationRequest request
     ){
-        //
+        return ResponseEntity.ok(authService.authenticate(request));
     }
 
 

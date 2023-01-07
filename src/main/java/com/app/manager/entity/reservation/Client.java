@@ -3,7 +3,7 @@
 *
 * Drop us a line or two at feedback@archetypesoftware.com: we would love to hear from you!
 */
-package com.app.entity.reservation;
+package com.app.manager.entity.reservation;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;

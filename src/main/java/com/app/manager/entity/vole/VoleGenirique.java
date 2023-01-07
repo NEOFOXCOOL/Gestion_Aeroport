@@ -1,4 +1,4 @@
-package com.app.entity.vole;
+package com.app.manager.entity.vole;
 
 import lombok.*;
 

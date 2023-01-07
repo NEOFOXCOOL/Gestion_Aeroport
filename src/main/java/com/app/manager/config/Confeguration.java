@@ -1,4 +1,4 @@
-package com.app;
+package com.app.manager.config;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

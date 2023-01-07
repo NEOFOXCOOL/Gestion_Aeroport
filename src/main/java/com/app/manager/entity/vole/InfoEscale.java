@@ -3,7 +3,7 @@
 *
 * Drop us a line or two at feedback@archetypesoftware.com: we would love to hear from you!
 */
-package com.app.entity.vole;
+package com.app.manager.entity.vole;
 
 import lombok.*;
 

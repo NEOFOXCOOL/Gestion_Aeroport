@@ -1,16 +1,16 @@
-package com.app.controller;
+package com.app.manager.controller;
 
-import com.app.entity.Reserver;
-import com.app.entity.reservation.Client;
-import com.app.repository.ClientRepository;
-import com.app.repository.ReservationRepository;
-import com.app.services.ReservationService;
+import com.app.manager.entity.Reserver;
+import com.app.manager.entity.reservation.Client;
+import com.app.manager.repository.ClientRepository;
+import com.app.manager.repository.ReservationRepository;
+import com.app.manager.services.ReservationService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "app")
+@RequestMapping(path = "api/v1/app")
 public class ReservationController {
 
 private final ReservationService reservationService;

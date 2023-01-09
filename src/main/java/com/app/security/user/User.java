@@ -17,9 +17,7 @@ import java.util.Objects;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 public class User  implements UserDetails {
 
     @Id
@@ -32,6 +30,7 @@ public class User  implements UserDetails {
             strategy = GenerationType.SEQUENCE,
             generator = "user_seqence"
     )
+    //@GeneratedValue
     private Integer id;
     private String firstname;
     private String lastname;
@@ -77,16 +76,4 @@ public class User  implements UserDetails {
         return true;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        User user = (User) o;
-        return id != null && Objects.equals(id, user.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }

@@ -6,19 +6,20 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/api/v1/auth/")
+@RequestMapping("/api/v1/auth/")
 public class AuthenticationController {
 
     private final AuthenticationService authService;
 
-    @PostMapping(path ="/register")
+    @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
     ){
+        System.out.println(request);
         return ResponseEntity.ok(authService.register(request));
     }
 
-    @PostMapping(path = "/authenticate")
+    @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request
     ){

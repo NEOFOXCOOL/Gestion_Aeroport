@@ -11,15 +11,16 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
 @RequiredArgsConstructor
-@Component
+@Service
 public class JwtAutenticationFilter extends OncePerRequestFilter {
 
+    private static final String AUTORIZATION = "Autorization";
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
 
@@ -31,7 +32,7 @@ public class JwtAutenticationFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException
     {
 //get the Request  extract Autorization header
- final String authHeader = request.getHeader("Authorization");
+ final String authHeader = request.getHeader(AUTORIZATION);
 //initialisation JWT
  final String JWT;
  //initialisation userEmail
@@ -40,6 +41,7 @@ public class JwtAutenticationFilter extends OncePerRequestFilter {
          if(authHeader == null || !authHeader.startsWith("Bearer "))
              {
                  filterChain.doFilter(request,response);
+                 System.out.println("authheader is null");
                  return;
              }
 
@@ -60,6 +62,7 @@ public class JwtAutenticationFilter extends OncePerRequestFilter {
                          //make shor if the token is valid
                          jwtService.isTokenValid(JWT,userDetails)
                  ) {
+                     System.out.println("Token Valid OK");
                      //creat object authToken
                      UsernamePasswordAuthenticationToken authToken =
                              new UsernamePasswordAuthenticationToken(

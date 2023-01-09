@@ -4,12 +4,15 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.InvalidKeyException;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.xml.crypto.AlgorithmMethod;
 import java.security.Key;
+import java.security.PrivateKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +23,7 @@ import java.util.function.Function;
 
 public class JwtService {
 
-    private static  final  String SECRET_KEY = "marri";
+    private static  final  String SECRET_KEY = "5A7234753778217A25432A462D4A614E645267556B58703273357638792F423F";
 
     public String extractUsername(String token) {
        return extractClaims(token,Claims::getSubject);
@@ -38,14 +41,13 @@ public class JwtService {
                 .parserBuilder()
                 .setSigningKey(getSignInKey())
                 .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody();
-
     }
-
 //Decoders Sign In Key
     private Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
+        System.out.println(Keys.hmacShaKeyFor(keyBytes));
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
@@ -76,7 +78,6 @@ public class JwtService {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
-
     //Validation of Expiration date for token
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());

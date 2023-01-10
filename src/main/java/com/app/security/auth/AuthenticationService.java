@@ -18,19 +18,29 @@ public class AuthenticationService {
   private final JwtService jwtService;
   private final AuthenticationManager authenticationManager;
 
-  public AuthenticationResponse register(RegisterRequest request) {
+  public AuthenticationResponse register(RegisterRequest request) throws Exception{
     var user = User.builder()
-        .firstname(request.getFirstname())
-        .lastname(request.getLastname())
-        .email(request.getEmail())
-        .password(passwordEncoder.encode(request.getPassword()))
-        .role(Role.USER)
-        .build();
-    repository.save(user);
-    var jwtToken = jwtService.generateToken(user);
-    return AuthenticationResponse.builder()
-        .token(jwtToken)
-        .build();
+            .firstname(request.getFirstname())
+            .lastname(request.getLastname())
+            .email(request.getEmail())
+            .password(passwordEncoder.encode(request.getPassword()))
+            .role(Role.USER)
+            .build();
+    try {
+      if(repository.findByEmail(request.getEmail()).isEmpty()){
+        repository.save(user);
+        var jwtToken = jwtService.generateToken(user);
+        return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .build();
+      }
+      else{
+        throw new RuntimeException("exist user with those information");
+      }
+    }
+    catch (Exception e){
+      throw new RuntimeException(e.getMessage());
+    }
   }
 
   public AuthenticationResponse authenticate(AuthenticationRequest request) {

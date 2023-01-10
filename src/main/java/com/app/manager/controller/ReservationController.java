@@ -5,25 +5,17 @@ import com.app.manager.entity.reservation.Client;
 import com.app.manager.repository.ClientRepository;
 import com.app.manager.repository.ReservationRepository;
 import com.app.manager.services.ReservationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/app")
+@RequiredArgsConstructor
 public class ReservationController {
 
-private final ReservationService reservationService;
-    private final ReservationRepository reservationRepository;
-    private final ClientRepository clientRepository;
-
-    public ReservationController(ReservationService reservationService,
-                                 ReservationRepository reservationRepository,
-                                 ClientRepository clientRepository) {
-        this.reservationService = reservationService;
-        this.reservationRepository = reservationRepository;
-        this.clientRepository = clientRepository;
-    }
+    private final ReservationService reservationService;
 
     @GetMapping(path = "client")
     public List<Client> clientList(){
